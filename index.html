@@ -7,840 +7,510 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --primary: #6C47FF;
-    --primary-light: #EDE9FF;
-    --primary-dark: #4A28E0;
-    --accent: #FF6B35;
-    --accent-light: #FFF0EB;
-    --dark: #0F0F1A;
-    --dark2: #1A1A2E;
-    --text: #2D2D3A;
-    --text-muted: #6B6B80;
-    --border: #E8E8F0;
-    --bg: #FAFAFA;
-    --white: #FFFFFF;
-    --success: #22C55E;
-    --warning: #F59E0B;
-    --danger: #EF4444;
-    --card-shadow: 0 2px 16px rgba(108,71,255,0.08);
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    font-family: 'Inter', sans-serif;
-    color: var(--text);
-    background: var(--bg);
-    line-height: 1.6;
-  }
-
-  h1,h2,h3,h4,h5 { font-family: 'Space Grotesk', sans-serif; }
-
-  /* ─── NAV ─── */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-    background: rgba(255,255,255,0.95);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-    padding: 0 2rem;
-    display: flex; align-items: center; justify-content: space-between;
-    height: 68px;
-  }
-
-  .nav-logo {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 1.4rem; font-weight: 700;
-    color: var(--primary);
-    display: flex; align-items: center; gap: 10px;
-    cursor: pointer;
-  }
-
-  .nav-logo-icon {
-    width: 36px; height: 36px;
-    background: var(--primary);
-    border-radius: 10px;
-    display: flex; align-items: center; justify-content: center;
-    color: white; font-size: 1rem; font-weight: 700;
-  }
-
-  .nav-links {
-    display: flex; gap: 0.25rem; list-style: none;
-  }
-
-  .nav-links a {
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
-    text-decoration: none;
-    font-size: 0.9rem; font-weight: 500;
-    color: var(--text-muted);
-    transition: all 0.2s;
-    cursor: pointer;
-  }
-
-  .nav-links a:hover, .nav-links a.active {
-    color: var(--primary);
-    background: var(--primary-light);
-  }
-
-  .nav-cta {
-    background: var(--primary);
-    color: white !important;
-    padding: 0.5rem 1.25rem !important;
-    border-radius: 10px !important;
-  }
-
-  .nav-cta:hover {
-    background: var(--primary-dark) !important;
-    color: white !important;
-  }
-
-  /* ─── PAGES ─── */
-  .page { display: none; padding-top: 68px; min-height: 100vh; }
-  .page.active { display: block; }
-
-  /* ─── HERO ─── */
-  .hero {
-    background: linear-gradient(135deg, #0F0F1A 0%, #1A1A2E 40%, #2D1B69 100%);
-    color: white;
-    padding: 6rem 2rem 5rem;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero::before {
-    content: '';
-    position: absolute; top: -50%; left: -50%; right: -50%; bottom: -50%;
-    background: radial-gradient(ellipse at 30% 50%, rgba(108,71,255,0.3) 0%, transparent 50%),
-                radial-gradient(ellipse at 70% 30%, rgba(255,107,53,0.15) 0%, transparent 50%);
-    pointer-events: none;
-  }
-
-  .hero-badge {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: rgba(108,71,255,0.2);
-    border: 1px solid rgba(108,71,255,0.4);
-    color: #BDB5FF;
-    padding: 0.4rem 1rem;
-    border-radius: 100px;
-    font-size: 0.82rem; font-weight: 500;
-    margin-bottom: 2rem;
-  }
-
-  .hero h1 {
-    font-size: clamp(2.2rem, 5vw, 3.8rem);
-    font-weight: 700;
-    line-height: 1.15;
-    margin-bottom: 1.5rem;
-    max-width: 780px;
-    margin-left: auto; margin-right: auto;
-  }
-
-  .hero h1 span { color: #A78BFA; }
-
-  .hero p {
-    font-size: 1.1rem;
-    color: rgba(255,255,255,0.7);
-    max-width: 540px;
-    margin: 0 auto 2.5rem;
-  }
-
-  .hero-buttons {
-    display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
-  }
-
-  .btn-primary {
-    background: var(--primary);
-    color: white;
-    padding: 0.85rem 2rem;
-    border-radius: 12px;
-    border: none;
-    font-size: 1rem; font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s;
-    font-family: 'Inter', sans-serif;
-    display: inline-flex; align-items: center; gap: 8px;
-  }
-
-  .btn-primary:hover { background: var(--primary-dark); transform: translateY(-1px); }
-
-  .btn-outline {
-    background: transparent;
-    color: white;
-    padding: 0.85rem 2rem;
-    border-radius: 12px;
-    border: 1px solid rgba(255,255,255,0.3);
-    font-size: 1rem; font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s;
-    font-family: 'Inter', sans-serif;
-  }
-
-  .btn-outline:hover { background: rgba(255,255,255,0.08); }
-
-  .hero-stats {
-    display: flex; gap: 3rem; justify-content: center;
-    margin-top: 4rem;
-    flex-wrap: wrap;
-  }
-
-  .hero-stat { text-align: center; }
-  .hero-stat-num { font-size: 2rem; font-weight: 700; color: white; }
-  .hero-stat-label { font-size: 0.82rem; color: rgba(255,255,255,0.5); margin-top: 2px; }
-
-  /* ─── SECTIONS ─── */
-  .section { padding: 5rem 2rem; }
-  .section-alt { background: white; }
-
-  .container { max-width: 1100px; margin: 0 auto; }
-
-  .section-tag {
-    display: inline-block;
-    background: var(--primary-light);
-    color: var(--primary);
-    padding: 0.3rem 0.9rem;
-    border-radius: 100px;
-    font-size: 0.78rem; font-weight: 600;
-    text-transform: uppercase; letter-spacing: 0.05em;
-    margin-bottom: 1rem;
-  }
-
-  .section-title {
-    font-size: clamp(1.6rem, 3vw, 2.4rem);
-    font-weight: 700;
-    margin-bottom: 1rem;
-    color: var(--dark);
-  }
-
-  .section-sub {
-    font-size: 1rem;
-    color: var(--text-muted);
-    max-width: 520px;
-  }
-
-  .section-header { margin-bottom: 3.5rem; }
-
-  /* ─── GRID ─── */
-  .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
-  .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 2rem; }
-  .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem; }
-
-  /* ─── CARDS ─── */
-  .card {
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 1.75rem;
-    transition: all 0.25s;
-  }
-
-  .card:hover { box-shadow: var(--card-shadow); transform: translateY(-3px); }
-
-  .card-icon {
-    width: 48px; height: 48px;
-    border-radius: 12px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.4rem;
-    margin-bottom: 1.25rem;
-  }
-
-  .card h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.6rem; color: var(--dark); }
-  .card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.65; }
-
-  /* ─── SERVICES PAGE ─── */
-  .service-card {
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    overflow: hidden;
-    transition: all 0.25s;
-  }
-
-  .service-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.1); transform: translateY(-4px); }
-
-  .service-card-header {
-    padding: 2rem;
-    position: relative;
-  }
-
-  .service-badge {
-    position: absolute; top: 1.25rem; right: 1.25rem;
-    background: var(--accent-light);
-    color: var(--accent);
-    padding: 0.3rem 0.75rem;
-    border-radius: 100px;
-    font-size: 0.78rem; font-weight: 600;
-  }
-
-  .service-price {
-    font-size: 2rem; font-weight: 700;
-    color: var(--primary);
-    margin-top: 0.5rem;
-  }
-
-  .service-price span { font-size: 0.95rem; font-weight: 400; color: var(--text-muted); }
-
-  .service-card-body { padding: 0 2rem 2rem; }
-
-  .service-feature {
-    display: flex; align-items: center; gap: 10px;
-    padding: 0.5rem 0;
-    font-size: 0.9rem;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .service-feature:last-child { border-bottom: none; }
-
-  .check { color: var(--success); font-weight: 700; font-size: 1rem; }
-
-  .btn-service {
-    width: 100%;
-    background: var(--primary);
-    color: white;
-    border: none;
-    padding: 0.9rem;
-    border-radius: 12px;
-    font-size: 0.95rem; font-weight: 600;
-    cursor: pointer;
-    margin-top: 1.5rem;
-    transition: all 0.2s;
-    font-family: 'Inter', sans-serif;
-  }
-
-  .btn-service:hover { background: var(--primary-dark); }
-
-  /* ─── HOW IT WORKS ─── */
-  .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem; }
-
-  .step { text-align: center; }
-
-  .step-num {
-    width: 56px; height: 56px;
-    background: var(--primary);
-    color: white;
-    border-radius: 16px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.25rem; font-weight: 700;
-    margin: 0 auto 1.25rem;
-  }
-
-  .step h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
-  .step p { font-size: 0.87rem; color: var(--text-muted); }
-
-  /* ─── TESTIMONIALS ─── */
-  .testimonial-card {
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 1.75rem;
-  }
-
-  .stars { color: #F59E0B; font-size: 1.1rem; margin-bottom: 1rem; }
-  .testimonial-text { font-size: 0.93rem; color: var(--text); line-height: 1.7; margin-bottom: 1.25rem; font-style: italic; }
-
-  .testimonial-author { display: flex; align-items: center; gap: 10px; }
-
-  .avatar {
-    width: 40px; height: 40px;
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 0.85rem; font-weight: 600; color: white;
-  }
-
-  .author-name { font-size: 0.88rem; font-weight: 600; }
-  .author-role { font-size: 0.78rem; color: var(--text-muted); }
-
-  /* ─── ABOUT PAGE ─── */
-  .about-hero {
-    background: var(--primary);
-    color: white;
-    padding: 5rem 2rem;
-    text-align: center;
-  }
-
-  .team-card {
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 2rem;
-    text-align: center;
-    transition: all 0.25s;
-  }
-
-  .team-card:hover { box-shadow: var(--card-shadow); transform: translateY(-3px); }
-
-  .team-avatar {
-    width: 80px; height: 80px;
-    border-radius: 50%;
-    margin: 0 auto 1rem;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.6rem; font-weight: 700; color: white;
-  }
-
-  .team-name { font-size: 1rem; font-weight: 600; margin-bottom: 0.25rem; }
-  .team-role { font-size: 0.83rem; color: var(--text-muted); margin-bottom: 0.75rem; }
-  .team-bio { font-size: 0.83rem; color: var(--text-muted); line-height: 1.6; }
-
-  .value-card {
-    display: flex; gap: 1.25rem;
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 1.5rem;
-    align-items: flex-start;
-  }
-
-  .value-icon {
-    width: 44px; height: 44px; flex-shrink: 0;
-    border-radius: 12px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.3rem;
-  }
-
-  /* ─── CONTACT PAGE ─── */
-  .contact-hero {
-    background: linear-gradient(135deg, #1A1A2E, #2D1B69);
-    color: white; padding: 4rem 2rem; text-align: center;
-  }
-
-  .form-container {
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: 24px;
-    padding: 2.5rem;
-    max-width: 680px;
-  }
-
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
-
-  .form-group { margin-bottom: 1.25rem; }
-
-  .form-label {
-    display: block;
-    font-size: 0.85rem; font-weight: 500;
-    color: var(--text);
-    margin-bottom: 0.5rem;
-  }
-
-  .form-input, .form-select, .form-textarea {
-    width: 100%;
-    padding: 0.75rem 1rem;
-    border: 1.5px solid var(--border);
-    border-radius: 10px;
-    font-size: 0.92rem;
-    font-family: 'Inter', sans-serif;
-    color: var(--text);
-    background: var(--bg);
-    transition: border-color 0.2s;
-    outline: none;
-  }
-
-  .form-input:focus, .form-select:focus, .form-textarea:focus {
-    border-color: var(--primary);
-    background: white;
-  }
-
-  .form-textarea { min-height: 120px; resize: vertical; }
-
-  .form-submit {
-    width: 100%;
-    background: var(--primary);
-    color: white;
-    border: none;
-    padding: 1rem;
-    border-radius: 12px;
-    font-size: 1rem; font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s;
-    font-family: 'Inter', sans-serif;
-    margin-top: 0.5rem;
-  }
-
-  .form-submit:hover { background: var(--primary-dark); transform: translateY(-1px); }
-
-  /* ─── CRM ─── */
-  .crm-header {
-    background: var(--dark);
-    color: white;
-    padding: 1.5rem 2rem;
-    display: flex; align-items: center; justify-content: space-between;
-    flex-wrap: wrap; gap: 1rem;
-  }
-
-  .crm-title { font-size: 1.3rem; font-weight: 600; display: flex; align-items: center; gap: 10px; }
-
-  .crm-stats {
-    display: flex; gap: 2rem; flex-wrap: wrap;
-  }
-
-  .crm-stat { text-align: center; }
-  .crm-stat-num { font-size: 1.5rem; font-weight: 700; color: #A78BFA; }
-  .crm-stat-label { font-size: 0.73rem; color: rgba(255,255,255,0.5); }
-
-  .crm-controls {
-    padding: 1.25rem 2rem;
-    background: white;
-    border-bottom: 1px solid var(--border);
-    display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;
-  }
-
-  .crm-search {
-    flex: 1; min-width: 200px;
-    padding: 0.6rem 1rem;
-    border: 1.5px solid var(--border);
-    border-radius: 10px;
-    font-size: 0.88rem;
-    font-family: 'Inter', sans-serif;
-    outline: none;
-  }
-
-  .crm-search:focus { border-color: var(--primary); }
-
-  .crm-filter {
-    padding: 0.6rem 1rem;
-    border: 1.5px solid var(--border);
-    border-radius: 10px;
-    font-size: 0.85rem;
-    font-family: 'Inter', sans-serif;
-    outline: none; cursor: pointer;
-  }
-
-  .crm-table-wrap { overflow-x: auto; }
-
-  table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-
-  thead { background: var(--bg); }
-
-  th {
-    padding: 0.9rem 1.25rem;
-    text-align: left;
-    font-size: 0.78rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    color: var(--text-muted);
-    border-bottom: 1px solid var(--border);
-    white-space: nowrap;
-  }
-
-  td {
-    padding: 1rem 1.25rem;
-    font-size: 0.88rem;
-    border-bottom: 1px solid var(--border);
-    color: var(--text);
-  }
-
-  tr:last-child td { border-bottom: none; }
-  tr:hover td { background: var(--primary-light); }
-
-  .status-badge {
-    padding: 0.25rem 0.75rem;
-    border-radius: 100px;
-    font-size: 0.75rem; font-weight: 600;
-    white-space: nowrap;
-  }
-
-  .status-new { background: #EDE9FF; color: #6C47FF; }
-  .status-process { background: #FEF3C7; color: #92400E; }
-  .status-done { background: #D1FAE5; color: #065F46; }
-  .status-cancel { background: #FEE2E2; color: #991B1B; }
-
-  .action-btn {
-    padding: 0.3rem 0.7rem;
-    border-radius: 8px;
-    border: 1px solid var(--border);
-    background: white;
-    cursor: pointer;
-    font-size: 0.78rem;
-    transition: all 0.2s;
-    font-family: 'Inter', sans-serif;
-    margin-right: 4px;
-  }
-
-  .action-btn:hover { border-color: var(--primary); color: var(--primary); }
-  .action-btn.del:hover { border-color: var(--danger); color: var(--danger); }
-
-  /* ─── MODAL ─── */
-  .modal-overlay {
-    display: none;
-    position: fixed; inset: 0; z-index: 9999;
-    background: rgba(0,0,0,0.5);
-    backdrop-filter: blur(4px);
-    align-items: center; justify-content: center;
-    padding: 1rem;
-  }
-
-  .modal-overlay.open { display: flex; }
-
-  .modal {
-    background: white;
-    border-radius: 20px;
-    padding: 2rem;
-    width: 100%; max-width: 560px;
-    max-height: 90vh;
-    overflow-y: auto;
-  }
-
-  .modal-header {
-    display: flex; align-items: center; justify-content: space-between;
-    margin-bottom: 1.5rem;
-  }
-
-  .modal-title { font-size: 1.2rem; font-weight: 700; }
-
-  .modal-close {
-    width: 32px; height: 32px;
-    border-radius: 8px;
-    border: 1px solid var(--border);
-    background: white;
-    cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.1rem; color: var(--text-muted);
-    transition: all 0.2s;
-  }
-
-  .modal-close:hover { background: var(--bg); color: var(--text); }
-
-  /* ─── TOAST ─── */
-  .toast {
-    position: fixed; bottom: 2rem; right: 2rem;
-    background: var(--dark);
-    color: white;
-    padding: 1rem 1.5rem;
-    border-radius: 14px;
-    font-size: 0.9rem;
-    z-index: 99999;
-    transform: translateY(80px);
-    opacity: 0;
-    transition: all 0.3s;
-    display: flex; align-items: center; gap: 10px;
-  }
-
-  .toast.show { transform: translateY(0); opacity: 1; }
-  .toast.success { border-left: 4px solid var(--success); }
-  .toast.error { border-left: 4px solid var(--danger); }
-
-  /* ─── FOOTER ─── */
-  footer {
-    background: var(--dark);
-    color: rgba(255,255,255,0.6);
-    padding: 3rem 2rem 1.5rem;
-  }
-
-  .footer-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
-    gap: 2rem;
-    max-width: 1100px;
-    margin: 0 auto 2rem;
-  }
-
-  .footer-brand-name {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 1.3rem; font-weight: 700;
-    color: white; margin-bottom: 0.75rem;
-  }
-
-  .footer-desc { font-size: 0.85rem; line-height: 1.7; }
-
-  .footer-col h4 {
-    color: white; font-size: 0.88rem; font-weight: 600;
-    margin-bottom: 1rem;
-  }
-
-  .footer-links { list-style: none; }
-  .footer-links li { margin-bottom: 0.5rem; }
-  .footer-links a {
-    color: rgba(255,255,255,0.55);
-    text-decoration: none;
-    font-size: 0.85rem;
-    cursor: pointer;
-    transition: color 0.2s;
-  }
-  .footer-links a:hover { color: white; }
-
-  .footer-bottom {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding-top: 1.5rem;
-    border-top: 1px solid rgba(255,255,255,0.1);
-    text-align: center;
-    font-size: 0.8rem;
-  }
-
-  /* ─── CTA BANNER ─── */
-  .cta-banner {
-    background: linear-gradient(135deg, var(--primary), #4A28E0);
-    border-radius: 24px;
-    padding: 3.5rem 2rem;
-    text-align: center;
-    color: white;
-    margin: 0 2rem 4rem;
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-
-  .cta-banner h2 { font-size: clamp(1.5rem, 3vw, 2.2rem); margin-bottom: 1rem; }
-  .cta-banner p { color: rgba(255,255,255,0.75); margin-bottom: 2rem; }
-
-  /* ─── RESPONSIVE ─── */
-  @media (max-width: 768px) {
-    .nav-links { display: none; }
-    .form-row { grid-template-columns: 1fr; }
-    .footer-grid { grid-template-columns: 1fr 1fr; }
-    .hero-stats { gap: 1.5rem; }
-    .crm-header { flex-direction: column; align-items: flex-start; }
-  }
-
-  @media (max-width: 480px) {
-    .footer-grid { grid-template-columns: 1fr; }
-    .hero { padding: 4rem 1rem 3rem; }
-    .section { padding: 3rem 1rem; }
-  }
-
-  /* mobile nav hamburger */
-  .hamburger {
-    display: none;
-    flex-direction: column; gap: 5px;
-    cursor: pointer; padding: 8px;
-  }
-
-  .hamburger span {
-    display: block; width: 22px; height: 2px;
-    background: var(--text); border-radius: 2px;
-    transition: all 0.3s;
-  }
-
-  @media (max-width: 768px) { .hamburger { display: flex; } }
-
-  .mobile-nav {
-    display: none;
-    position: fixed; top: 68px; left: 0; right: 0;
-    background: white;
-    border-bottom: 1px solid var(--border);
-    padding: 1rem;
-    z-index: 999;
-    flex-direction: column; gap: 0.25rem;
-  }
-
-  .mobile-nav.open { display: flex; }
-  .mobile-nav a {
-    padding: 0.75rem 1rem;
-    border-radius: 10px;
-    text-decoration: none;
-    font-size: 0.95rem; font-weight: 500;
-    color: var(--text);
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-  .mobile-nav a:hover { background: var(--primary-light); color: var(--primary); }
-
-  .tag-popular {
-    display: inline-block;
-    background: var(--accent);
-    color: white;
-    font-size: 0.7rem; font-weight: 600;
-    padding: 0.2rem 0.5rem;
-    border-radius: 6px;
-    margin-left: 6px;
-    vertical-align: middle;
-  }
-
-  .faq-item {
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    overflow: hidden;
-    margin-bottom: 1rem;
-  }
-
-  .faq-q {
-    padding: 1.1rem 1.5rem;
-    font-weight: 600; font-size: 0.93rem;
-    cursor: pointer;
-    display: flex; align-items: center; justify-content: space-between;
-    background: white;
-    transition: background 0.2s;
-  }
-
-  .faq-q:hover { background: var(--bg); }
-  .faq-q .arrow { transition: transform 0.3s; font-size: 1rem; color: var(--text-muted); }
-  .faq-q.open .arrow { transform: rotate(180deg); }
-
-  .faq-a {
-    display: none;
-    padding: 0 1.5rem 1.25rem;
-    font-size: 0.88rem; color: var(--text-muted); line-height: 1.7;
-    background: white;
-  }
-
-  .faq-a.open { display: block; }
+    --primary:#6C47FF; --primary-light:#EDE9FF; --primary-dark:#4A28E0;
+    --accent:#FF6B35; --accent-light:#FFF0EB;
+    --dark:#0F0F1A; --text:#2D2D3A; --text-muted:#6B6B80;
+    --border:#E8E8F0; --bg:#FAFAFA; --white:#FFFFFF;
+    --success:#22C55E; --warning:#F59E0B; --danger:#EF4444;
+    --card-shadow:0 2px 16px rgba(108,71,255,0.08);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Inter',sans-serif;color:var(--text);background:var(--bg);line-height:1.6;}
+  h1,h2,h3,h4,h5{font-family:'Space Grotesk',sans-serif;}
+
+  /* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,0.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:68px;}
+  .nav-logo{font-family:'Space Grotesk',sans-serif;font-size:1.4rem;font-weight:700;color:var(--primary);display:flex;align-items:center;gap:10px;cursor:pointer;}
+  .nav-logo-icon{width:36px;height:36px;background:var(--primary);border-radius:10px;display:flex;align-items:center;justify-content:center;color:white;font-size:1rem;font-weight:700;}
+  .nav-links{display:flex;gap:0.25rem;list-style:none;align-items:center;}
+  .nav-links a{padding:0.5rem 1rem;border-radius:8px;text-decoration:none;font-size:0.9rem;font-weight:500;color:var(--text-muted);transition:all 0.2s;cursor:pointer;display:block;}
+  .nav-links a:hover,.nav-links a.active{color:var(--primary);background:var(--primary-light);}
+  .nav-cta{background:var(--primary)!important;color:white!important;border-radius:10px!important;}
+  .nav-cta:hover{background:var(--primary-dark)!important;}
+  .nav-user-btn{display:none;align-items:center;gap:8px;background:var(--primary-light);color:var(--primary);border:none;padding:0.5rem 1rem;border-radius:10px;font-size:0.88rem;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;}
+  .nav-avatar{width:28px;height:28px;background:var(--primary);border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:0.75rem;font-weight:700;}
+  .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;}
+  .hamburger span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px;}
+  @media(max-width:768px){.nav-links{display:none;}.hamburger{display:flex;}}
+  .mobile-nav{display:none;position:fixed;top:68px;left:0;right:0;background:white;border-bottom:1px solid var(--border);padding:1rem;z-index:999;flex-direction:column;gap:0.25rem;}
+  .mobile-nav.open{display:flex;}
+  .mobile-nav a{padding:0.75rem 1rem;border-radius:10px;text-decoration:none;font-size:0.95rem;font-weight:500;color:var(--text);cursor:pointer;transition:all 0.2s;}
+  .mobile-nav a:hover{background:var(--primary-light);color:var(--primary);}
+
+  /* PAGES */
+  .page{display:none;padding-top:68px;min-height:100vh;}
+  .page.active{display:block;}
+
+  /* HERO */
+  .hero{background:linear-gradient(135deg,#0F0F1A 0%,#1A1A2E 40%,#2D1B69 100%);color:white;padding:6rem 2rem 5rem;text-align:center;position:relative;overflow:hidden;}
+  .hero::before{content:'';position:absolute;inset:-50%;background:radial-gradient(ellipse at 30% 50%,rgba(108,71,255,0.3) 0%,transparent 50%),radial-gradient(ellipse at 70% 30%,rgba(255,107,53,0.15) 0%,transparent 50%);pointer-events:none;}
+  .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(108,71,255,0.2);border:1px solid rgba(108,71,255,0.4);color:#BDB5FF;padding:0.4rem 1rem;border-radius:100px;font-size:0.82rem;font-weight:500;margin-bottom:2rem;}
+  .hero h1{font-size:clamp(2.2rem,5vw,3.8rem);font-weight:700;line-height:1.15;margin-bottom:1.5rem;max-width:780px;margin-left:auto;margin-right:auto;}
+  .hero h1 span{color:#A78BFA;}
+  .hero p{font-size:1.1rem;color:rgba(255,255,255,0.7);max-width:540px;margin:0 auto 2.5rem;}
+  .hero-buttons{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+  .hero-stats{display:flex;gap:3rem;justify-content:center;margin-top:4rem;flex-wrap:wrap;}
+  .hero-stat{text-align:center;}
+  .hero-stat-num{font-size:2rem;font-weight:700;color:white;}
+  .hero-stat-label{font-size:0.82rem;color:rgba(255,255,255,0.5);margin-top:2px;}
+
+  /* BUTTONS */
+  .btn-primary{background:var(--primary);color:white;padding:0.85rem 2rem;border-radius:12px;border:none;font-size:1rem;font-weight:600;cursor:pointer;transition:all 0.2s;font-family:'Inter',sans-serif;display:inline-flex;align-items:center;gap:8px;}
+  .btn-primary:hover{background:var(--primary-dark);transform:translateY(-1px);}
+  .btn-outline{background:transparent;color:white;padding:0.85rem 2rem;border-radius:12px;border:1px solid rgba(255,255,255,0.3);font-size:1rem;font-weight:500;cursor:pointer;transition:all 0.2s;font-family:'Inter',sans-serif;}
+  .btn-outline:hover{background:rgba(255,255,255,0.08);}
+
+  /* SECTIONS */
+  .section{padding:5rem 2rem;}
+  .section-alt{background:white;}
+  .container{max-width:1100px;margin:0 auto;}
+  .section-tag{display:inline-block;background:var(--primary-light);color:var(--primary);padding:0.3rem 0.9rem;border-radius:100px;font-size:0.78rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:1rem;}
+  .section-title{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;margin-bottom:1rem;color:var(--dark);}
+  .section-sub{font-size:1rem;color:var(--text-muted);max-width:520px;}
+  .section-header{margin-bottom:3.5rem;}
+
+  /* GRIDS */
+  .grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;}
+  .grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:2rem;}
+  .grid-4{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.25rem;}
+
+  /* CARDS */
+  .card{background:white;border:1px solid var(--border);border-radius:16px;padding:1.75rem;transition:all 0.25s;}
+  .card:hover{box-shadow:var(--card-shadow);transform:translateY(-3px);}
+  .card-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:1.25rem;}
+  .card h3{font-size:1.1rem;font-weight:600;margin-bottom:0.6rem;color:var(--dark);}
+  .card p{font-size:0.9rem;color:var(--text-muted);line-height:1.65;}
+
+  /* SERVICES */
+  .service-card{background:white;border:1px solid var(--border);border-radius:20px;overflow:hidden;transition:all 0.25s;}
+  .service-card:hover{box-shadow:0 8px 32px rgba(0,0,0,0.1);transform:translateY(-4px);}
+  .service-card-header{padding:2rem;position:relative;}
+  .service-badge{position:absolute;top:1.25rem;right:1.25rem;background:var(--accent-light);color:var(--accent);padding:0.3rem 0.75rem;border-radius:100px;font-size:0.78rem;font-weight:600;}
+  .service-price{font-size:2rem;font-weight:700;color:var(--primary);margin-top:0.5rem;}
+  .service-price span{font-size:0.95rem;font-weight:400;color:var(--text-muted);}
+  .service-card-body{padding:0 2rem 2rem;}
+  .service-feature{display:flex;align-items:center;gap:10px;padding:0.5rem 0;font-size:0.9rem;border-bottom:1px solid var(--border);}
+  .service-feature:last-child{border-bottom:none;}
+  .check{color:var(--success);font-weight:700;}
+  .btn-service{width:100%;background:var(--primary);color:white;border:none;padding:0.9rem;border-radius:12px;font-size:0.95rem;font-weight:600;cursor:pointer;margin-top:1.5rem;transition:all 0.2s;font-family:'Inter',sans-serif;}
+  .btn-service:hover{background:var(--primary-dark);}
+
+  /* STEPS */
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2rem;}
+  .step{text-align:center;}
+  .step-num{width:56px;height:56px;background:var(--primary);color:white;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:1.25rem;font-weight:700;margin:0 auto 1.25rem;}
+  .step h3{font-size:1rem;font-weight:600;margin-bottom:0.5rem;}
+  .step p{font-size:0.87rem;color:var(--text-muted);}
+
+  /* TESTIMONIALS */
+  .testimonial-card{background:white;border:1px solid var(--border);border-radius:16px;padding:1.75rem;}
+  .stars{color:#F59E0B;font-size:1.1rem;margin-bottom:1rem;}
+  .testimonial-text{font-size:0.93rem;color:var(--text);line-height:1.7;margin-bottom:1.25rem;font-style:italic;}
+  .testimonial-author{display:flex;align-items:center;gap:10px;}
+  .avatar{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.85rem;font-weight:600;color:white;}
+  .author-name{font-size:0.88rem;font-weight:600;}
+  .author-role{font-size:0.78rem;color:var(--text-muted);}
+
+  /* FORMS */
+  .form-container{background:white;border:1px solid var(--border);border-radius:24px;padding:2.5rem;max-width:680px;}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;}
+  .form-group{margin-bottom:1.25rem;}
+  .form-label{display:block;font-size:0.85rem;font-weight:500;color:var(--text);margin-bottom:0.5rem;}
+  .form-input,.form-select,.form-textarea{width:100%;padding:0.75rem 1rem;border:1.5px solid var(--border);border-radius:10px;font-size:0.92rem;font-family:'Inter',sans-serif;color:var(--text);background:var(--bg);transition:border-color 0.2s;outline:none;}
+  .form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--primary);background:white;}
+  .form-textarea{min-height:120px;resize:vertical;}
+  .form-submit{width:100%;background:var(--primary);color:white;border:none;padding:1rem;border-radius:12px;font-size:1rem;font-weight:600;cursor:pointer;transition:all 0.2s;font-family:'Inter',sans-serif;margin-top:0.5rem;}
+  .form-submit:hover{background:var(--primary-dark);transform:translateY(-1px);}
+  .form-submit:disabled{opacity:0.6;cursor:not-allowed;transform:none;}
+
+  /* CRM */
+  .crm-header{background:var(--dark);color:white;padding:1.5rem 2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+  .crm-title{font-size:1.3rem;font-weight:600;display:flex;align-items:center;gap:10px;}
+  .crm-stats{display:flex;gap:2rem;flex-wrap:wrap;}
+  .crm-stat{text-align:center;}
+  .crm-stat-num{font-size:1.5rem;font-weight:700;color:#A78BFA;}
+  .crm-stat-label{font-size:0.73rem;color:rgba(255,255,255,0.5);}
+  .crm-controls{padding:1.25rem 2rem;background:white;border-bottom:1px solid var(--border);display:flex;gap:1rem;align-items:center;flex-wrap:wrap;}
+  .crm-search{flex:1;min-width:200px;padding:0.6rem 1rem;border:1.5px solid var(--border);border-radius:10px;font-size:0.88rem;font-family:'Inter',sans-serif;outline:none;}
+  .crm-search:focus{border-color:var(--primary);}
+  .crm-filter{padding:0.6rem 1rem;border:1.5px solid var(--border);border-radius:10px;font-size:0.85rem;font-family:'Inter',sans-serif;outline:none;cursor:pointer;}
+  table{width:100%;border-collapse:collapse;}
+  thead{background:var(--bg);}
+  th{padding:0.9rem 1.25rem;text-align:left;font-size:0.78rem;font-weight:600;text-transform:uppercase;letter-spacing:0.04em;color:var(--text-muted);border-bottom:1px solid var(--border);white-space:nowrap;}
+  td{padding:1rem 1.25rem;font-size:0.88rem;border-bottom:1px solid var(--border);color:var(--text);}
+  tr:last-child td{border-bottom:none;}
+  tr:hover td{background:var(--primary-light);}
+  .status-badge{padding:0.25rem 0.75rem;border-radius:100px;font-size:0.75rem;font-weight:600;white-space:nowrap;}
+  .status-new{background:#EDE9FF;color:#6C47FF;}
+  .status-process{background:#FEF3C7;color:#92400E;}
+  .status-done{background:#D1FAE5;color:#065F46;}
+  .status-cancel{background:#FEE2E2;color:#991B1B;}
+  .action-btn{padding:0.3rem 0.7rem;border-radius:8px;border:1px solid var(--border);background:white;cursor:pointer;font-size:0.78rem;transition:all 0.2s;font-family:'Inter',sans-serif;margin-right:4px;}
+  .action-btn:hover{border-color:var(--primary);color:var(--primary);}
+  .action-btn.del:hover{border-color:var(--danger);color:var(--danger);}
+
+  /* MODAL */
+  .modal-overlay{display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.5);backdrop-filter:blur(4px);align-items:center;justify-content:center;padding:1rem;}
+  .modal-overlay.open{display:flex;}
+  .modal{background:white;border-radius:20px;padding:2rem;width:100%;max-width:520px;max-height:90vh;overflow-y:auto;}
+  .modal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;}
+  .modal-title{font-size:1.2rem;font-weight:700;}
+  .modal-close{width:32px;height:32px;border-radius:8px;border:1px solid var(--border);background:white;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.1rem;color:var(--text-muted);transition:all 0.2s;}
+  .modal-close:hover{background:var(--bg);}
+  .modal-tabs{display:flex;gap:0;margin-bottom:1.5rem;border-bottom:2px solid var(--border);}
+  .modal-tab{flex:1;padding:0.75rem;text-align:center;font-size:0.9rem;font-weight:600;cursor:pointer;color:var(--text-muted);border-bottom:2px solid transparent;margin-bottom:-2px;transition:all 0.2s;}
+  .modal-tab.active{color:var(--primary);border-bottom-color:var(--primary);}
+  .tab-content{display:none;}
+  .tab-content.active{display:block;}
+
+  /* CABINET */
+  .cabinet-header{background:linear-gradient(135deg,#1A1A2E,#2D1B69);color:white;padding:3rem 2rem;}
+  .cabinet-avatar{width:80px;height:80px;background:var(--primary);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2rem;font-weight:700;color:white;margin-bottom:1rem;}
+  .cabinet-grid{display:grid;grid-template-columns:280px 1fr;gap:2rem;max-width:1100px;margin:0 auto;padding:2rem;}
+  @media(max-width:768px){.cabinet-grid{grid-template-columns:1fr;}.form-row{grid-template-columns:1fr;}}
+  .cabinet-sidebar{display:flex;flex-direction:column;gap:1rem;}
+  .cabinet-menu-item{display:flex;align-items:center;gap:10px;padding:0.85rem 1rem;border-radius:12px;cursor:pointer;font-size:0.9rem;font-weight:500;color:var(--text-muted);transition:all 0.2s;border:1px solid transparent;}
+  .cabinet-menu-item:hover,.cabinet-menu-item.active{background:var(--primary-light);color:var(--primary);border-color:var(--primary-light);}
+  .cabinet-content{background:white;border:1px solid var(--border);border-radius:20px;padding:2rem;}
+  .cabinet-section{display:none;}
+  .cabinet-section.active{display:block;}
+  .info-row{display:flex;align-items:center;justify-content:space-between;padding:0.9rem 0;border-bottom:1px solid var(--border);font-size:0.9rem;}
+  .info-row:last-child{border-bottom:none;}
+  .info-label{color:var(--text-muted);font-size:0.83rem;}
+  .info-value{font-weight:500;}
+
+  /* TOAST */
+  .toast{position:fixed;bottom:2rem;right:2rem;background:var(--dark);color:white;padding:1rem 1.5rem;border-radius:14px;font-size:0.9rem;z-index:99999;transform:translateY(80px);opacity:0;transition:all 0.3s;display:flex;align-items:center;gap:10px;max-width:320px;}
+  .toast.show{transform:translateY(0);opacity:1;}
+  .toast.success{border-left:4px solid var(--success);}
+  .toast.error{border-left:4px solid var(--danger);}
+
+  /* FOOTER */
+  footer{background:var(--dark);color:rgba(255,255,255,0.6);padding:3rem 2rem 1.5rem;}
+  .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2rem;max-width:1100px;margin:0 auto 2rem;}
+  .footer-brand-name{font-family:'Space Grotesk',sans-serif;font-size:1.3rem;font-weight:700;color:white;margin-bottom:0.75rem;}
+  .footer-desc{font-size:0.85rem;line-height:1.7;}
+  .footer-col h4{color:white;font-size:0.88rem;font-weight:600;margin-bottom:1rem;}
+  .footer-links{list-style:none;}
+  .footer-links li{margin-bottom:0.5rem;}
+  .footer-links a{color:rgba(255,255,255,0.55);text-decoration:none;font-size:0.85rem;cursor:pointer;transition:color 0.2s;}
+  .footer-links a:hover{color:white;}
+  .footer-bottom{max-width:1100px;margin:0 auto;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,0.1);text-align:center;font-size:0.8rem;}
+
+  /* CTA */
+  .cta-banner{background:linear-gradient(135deg,var(--primary),#4A28E0);border-radius:24px;padding:3.5rem 2rem;text-align:center;color:white;}
+  .cta-banner h2{font-size:clamp(1.5rem,3vw,2.2rem);margin-bottom:1rem;}
+  .cta-banner p{color:rgba(255,255,255,0.75);margin-bottom:2rem;}
+
+  /* FAQ */
+  .faq-item{border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:1rem;}
+  .faq-q{padding:1.1rem 1.5rem;font-weight:600;font-size:0.93rem;cursor:pointer;display:flex;align-items:center;justify-content:space-between;background:white;}
+  .faq-q .arrow{transition:transform 0.3s;color:var(--text-muted);}
+  .faq-q.open .arrow{transform:rotate(180deg);}
+  .faq-a{display:none;padding:0 1.5rem 1.25rem;font-size:0.88rem;color:var(--text-muted);line-height:1.7;background:white;}
+  .faq-a.open{display:block;}
+
+  /* TEAM */
+  .team-card{background:white;border:1px solid var(--border);border-radius:20px;padding:2rem;text-align:center;transition:all 0.25s;}
+  .team-card:hover{box-shadow:var(--card-shadow);transform:translateY(-3px);}
+  .team-avatar{width:80px;height:80px;border-radius:50%;margin:0 auto 1rem;display:flex;align-items:center;justify-content:center;font-size:1.6rem;font-weight:700;color:white;}
+  .value-card{display:flex;gap:1.25rem;background:white;border:1px solid var(--border);border-radius:16px;padding:1.5rem;align-items:flex-start;}
+  .value-icon{width:44px;height:44px;flex-shrink:0;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;}
+
+  @media(max-width:768px){.footer-grid{grid-template-columns:1fr 1fr;}.cabinet-grid{grid-template-columns:1fr;}}
+  @media(max-width:480px){.footer-grid{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
 
+<!-- Firebase SDK (module) -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, updateProfile } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import { getFirestore, doc, setDoc, getDoc, collection, addDoc, getDocs, updateDoc, deleteDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDwWt9tCz5wzfIZVWvEQHNHgHpL2zNQHuE",
+  authDomain: "service-hub-18f1e.firebaseapp.com",
+  projectId: "service-hub-18f1e",
+  storageBucket: "service-hub-18f1e.firebasestorage.app",
+  messagingSenderId: "202216971333",
+  appId: "1:202216971333:web:d0bcb43ff95510bec9572c"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+// Auth state watcher
+onAuthStateChanged(auth, async (user) => {
+  if (user) {
+    document.getElementById('nav-register-btn').style.display = 'none';
+    document.getElementById('nav-cabinet-btn').style.display = 'inline-flex';
+    const initial = (user.displayName || user.email)[0].toUpperCase();
+    document.getElementById('nav-avatar').textContent = initial;
+    document.getElementById('nav-user-name').textContent = user.displayName ? user.displayName.split(' ')[0] : user.email.split('@')[0];
+  } else {
+    document.getElementById('nav-register-btn').style.display = 'inline-flex';
+    document.getElementById('nav-cabinet-btn').style.display = 'none';
+    if (document.getElementById('page-cabinet')?.classList.contains('active')) {
+      window.goPage('home');
+    }
+  }
+});
+
+// REGISTER
+window._fbRegister = async function() {
+  const name = document.getElementById('r-name').value.trim();
+  const surname = document.getElementById('r-surname').value.trim();
+  const email = document.getElementById('r-email').value.trim();
+  const pass = document.getElementById('r-pass').value;
+  const phone = document.getElementById('r-phone').value.trim();
+  const service = document.getElementById('r-service').value;
+
+  if (!name || !email || !pass || !phone) { window.showToast("Barcha maydonlarni to'ldiring!", 'error'); return; }
+  if (pass.length < 6) { window.showToast("Parol kamida 6 ta belgi!", 'error'); return; }
+
+  const btn = document.getElementById('register-btn');
+  btn.textContent = '⏳ Yuklanmoqda...'; btn.disabled = true;
+
+  try {
+    const cred = await createUserWithEmailAndPassword(auth, email, pass);
+    await updateProfile(cred.user, { displayName: name + ' ' + surname });
+    await setDoc(doc(db, 'users', cred.user.uid), {
+      name, surname, fullName: name+' '+surname,
+      email, phone, service: service||'Belgilanmagan',
+      createdAt: serverTimestamp()
+    });
+    await addDoc(collection(db, 'clients'), {
+      name: name+' '+surname, phone, email,
+      service: service||'Belgilanmagan',
+      status: 'new',
+      date: new Date().toLocaleDateString('uz-UZ'),
+      uid: cred.user.uid,
+      createdAt: serverTimestamp()
+    });
+    window.closeModal('authModal');
+    window.showToast("Xush kelibsiz, "+name+"! 🎉");
+    ['r-name','r-surname','r-phone','r-email','r-pass'].forEach(id => document.getElementById(id).value='');
+    setTimeout(() => window._openCabinet(), 600);
+  } catch(e) {
+    let msg = "Xatolik yuz berdi";
+    if (e.code==='auth/email-already-in-use') msg = "Bu email allaqachon ro'yxatdan o'tgan!";
+    if (e.code==='auth/invalid-email') msg = "Email noto'g'ri!";
+    if (e.code==='auth/weak-password') msg = "Parol juda oddiy!";
+    window.showToast(msg, 'error');
+  } finally { btn.textContent="🚀 Ro'yxatdan o'tish"; btn.disabled=false; }
+};
+
+// LOGIN
+window._fbLogin = async function() {
+  const email = document.getElementById('l-email').value.trim();
+  const pass = document.getElementById('l-pass').value;
+  if (!email||!pass) { window.showToast("Email va parolni kiriting!", 'error'); return; }
+
+  const btn = document.getElementById('login-btn');
+  btn.textContent='⏳ Kirish...'; btn.disabled=true;
+
+  try {
+    await signInWithEmailAndPassword(auth, email, pass);
+    window.closeModal('authModal');
+    window.showToast("Xush kelibsiz! 👋");
+    setTimeout(() => window._openCabinet(), 600);
+  } catch(e) {
+    window.showToast("Email yoki parol noto'g'ri!", 'error');
+  } finally { btn.textContent='🔓 Kirish'; btn.disabled=false; }
+};
+
+// LOGOUT
+window._fbLogout = async function() {
+  await signOut(auth);
+  window.goPage('home');
+  window.showToast("Siz chiqdingiz");
+};
+
+// OPEN CABINET
+window._openCabinet = async function() {
+  const user = auth.currentUser;
+  if (!user) { window.openAuth(); return; }
+  window.goPage('cabinet');
+
+  document.getElementById('cab-name').textContent = user.displayName || user.email;
+  document.getElementById('cab-email-val').textContent = user.email;
+  document.getElementById('cab-avatar-char').textContent = (user.displayName||user.email)[0].toUpperCase();
+
+  try {
+    const snap = await getDoc(doc(db, 'users', user.uid));
+    if (snap.exists()) {
+      const d = snap.data();
+      document.getElementById('cab-phone-val').textContent = d.phone||'—';
+      document.getElementById('cab-service-val').textContent = d.service||'—';
+      const joined = d.createdAt?.toDate?.()?.toLocaleDateString('uz-UZ') || 'Bugun';
+      document.getElementById('cab-joined-val').textContent = joined;
+    }
+  } catch(e) {}
+
+  loadOrders(user.uid);
+};
+
+// LOAD ORDERS
+async function loadOrders(uid) {
+  const el = document.getElementById('cab-orders');
+  el.innerHTML = '<p style="color:var(--text-muted);font-size:0.88rem;padding:1rem 0">⏳ Yuklanmoqda...</p>';
+  try {
+    const snap = await getDocs(collection(db, 'clients'));
+    const orders = [];
+    snap.forEach(d => { if (d.data().uid===uid) orders.push(d.data()); });
+
+    if (orders.length===0) {
+      el.innerHTML = `<div style="text-align:center;padding:3rem 1rem;color:var(--text-muted)">
+        <div style="font-size:3rem;margin-bottom:1rem">📭</div>
+        <p style="font-weight:500;margin-bottom:0.5rem">Hali buyurtmalar yo'q</p>
+        <p style="font-size:0.83rem;margin-bottom:1.5rem">Birinchi buyurtmangizni bering!</p>
+        <button onclick="goPage('services')" style="background:var(--primary);color:white;border:none;padding:0.75rem 1.5rem;border-radius:12px;cursor:pointer;font-family:'Inter',sans-serif;font-weight:600;font-size:0.9rem">Xizmatlarni ko'rish →</button>
+      </div>`;
+    } else {
+      const statusLabels = {new:'🆕 Yangi',process:'⚡ Jarayonda',done:'✅ Bajarilgan',cancel:'❌ Bekor'};
+      el.innerHTML = orders.map(o => `
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:1rem;border:1px solid var(--border);border-radius:12px;margin-bottom:0.75rem;gap:1rem;flex-wrap:wrap;">
+          <div>
+            <div style="font-weight:600;font-size:0.95rem">${o.service}</div>
+            <div style="font-size:0.78rem;color:var(--text-muted);margin-top:3px">${o.date}</div>
+          </div>
+          <span class="status-badge status-${o.status}">${statusLabels[o.status]||o.status}</span>
+        </div>`).join('');
+    }
+  } catch(e) {
+    el.innerHTML = '<p style="color:var(--danger);font-size:0.85rem">Yuklab bo\'lmadi</p>';
+  }
+}
+
+// FIRESTORE CRM
+window._loadCRMClients = async function() {
+  try {
+    const snap = await getDocs(collection(db, 'clients'));
+    window._crmClients = [];
+    snap.forEach(d => window._crmClients.push({firestoreId:d.id, ...d.data()}));
+    window.renderTable();
+  } catch(e) { console.error(e); }
+};
+
+window._crmChangeStatus = async function(fid, status) {
+  try {
+    await updateDoc(doc(db,'clients',fid), {status});
+    window._loadCRMClients();
+  } catch(e) {}
+};
+
+window._crmDelete = async function(fid) {
+  if (!confirm("Bu mijozni o'chirmoqchimisiz?")) return;
+  try {
+    await deleteDoc(doc(db,'clients',fid));
+    window.showToast("Mijoz o'chirildi");
+    window._loadCRMClients();
+  } catch(e) { window.showToast("Xatolik!", 'error'); }
+};
+
+// ORDER via firebase
+window._fbOrder = async function() {
+  const name = document.getElementById('o-name').value.trim();
+  const phone = document.getElementById('o-phone').value.trim();
+  const service = document.getElementById('order-service-name').textContent;
+  if (!name||!phone) { window.showToast("Ism va telefon kiriting!", 'error'); return; }
+
+  const btn = document.getElementById('order-btn');
+  btn.textContent='⏳ Yuborilmoqda...'; btn.disabled=true;
+
+  try {
+    const uid = auth.currentUser?.uid || null;
+    await addDoc(collection(db,'clients'), {
+      name: name+' '+(document.getElementById('o-surname').value.trim()),
+      phone, email: document.getElementById('o-email').value.trim()||'—',
+      service, status:'new',
+      date: new Date().toLocaleDateString('uz-UZ'),
+      uid, createdAt: serverTimestamp()
+    });
+    window.closeModal('orderModal');
+    window.showToast("Buyurtma qabul qilindi! 🎉");
+    ['o-name','o-surname','o-phone','o-email','o-note'].forEach(id=>document.getElementById(id).value='');
+  } catch(e) { window.showToast("Xatolik!", 'error'); }
+  finally { btn.textContent='📨 Buyurtma yuborish'; btn.disabled=false; }
+};
+
+// CONTACT via firebase
+window._fbContact = async function() {
+  const name = document.getElementById('c-name').value.trim();
+  const phone = document.getElementById('c-phone').value.trim();
+  if (!name||!phone) { window.showToast("Ism va telefon kiriting!", 'error'); return; }
+  const btn = document.getElementById('contact-btn');
+  btn.textContent='⏳ Yuborilmoqda...'; btn.disabled=true;
+  try {
+    await addDoc(collection(db,'clients'), {
+      name: name+' '+(document.getElementById('c-surname').value.trim()),
+      phone, email: document.getElementById('c-email').value.trim()||'—',
+      service: document.getElementById('c-service').value||'Aloqa formasi',
+      status:'new',
+      date: new Date().toLocaleDateString('uz-UZ'),
+      uid: auth.currentUser?.uid||null,
+      createdAt: serverTimestamp()
+    });
+    window.showToast("Xabar yuborildi! Tez orada javob beramiz.");
+    ['c-name','c-surname','c-phone','c-email','c-message'].forEach(id=>document.getElementById(id).value='');
+    document.getElementById('c-service').value='';
+  } catch(e) { window.showToast("Xatolik!", 'error'); }
+  finally { btn.textContent='📨 Xabar yuborish'; btn.disabled=false; }
+};
+</script>
+
 <!-- ─── NAVIGATION ─── -->
 <nav>
   <div class="nav-logo" onclick="goPage('home')">
-    <div class="nav-logo-icon">S</div>
-    ServisHub
+    <div class="nav-logo-icon">S</div>ServisHub
   </div>
-
   <ul class="nav-links">
     <li><a onclick="goPage('home')" id="nav-home" class="active">Bosh sahifa</a></li>
     <li><a onclick="goPage('services')" id="nav-services">Xizmatlar</a></li>
     <li><a onclick="goPage('about')" id="nav-about">Biz haqimizda</a></li>
     <li><a onclick="goPage('contact')" id="nav-contact">Bog'lanish</a></li>
-    <li><a class="nav-cta" onclick="openRegister()">Ro'yxatdan o'tish</a></li>
+    <li id="nav-register-btn"><a class="nav-cta" onclick="openAuth()">Ro'yxatdan o'tish</a></li>
+    <li>
+      <button class="nav-user-btn" id="nav-cabinet-btn" onclick="_openCabinet()" style="display:none">
+        <div class="nav-avatar" id="nav-avatar">U</div>
+        <span id="nav-user-name">Kabinet</span>
+      </button>
+    </li>
   </ul>
-
-  <div class="hamburger" onclick="toggleMobile()">
-    <span></span><span></span><span></span>
-  </div>
+  <div class="hamburger" onclick="toggleMobile()"><span></span><span></span><span></span></div>
 </nav>
 
-<!-- Mobile Nav -->
 <div class="mobile-nav" id="mobileNav">
   <a onclick="goPage('home');toggleMobile()">🏠 Bosh sahifa</a>
   <a onclick="goPage('services');toggleMobile()">⚡ Xizmatlar</a>
   <a onclick="goPage('about');toggleMobile()">👥 Biz haqimizda</a>
   <a onclick="goPage('contact');toggleMobile()">📞 Bog'lanish</a>
-  <a onclick="openRegister();toggleMobile()">✨ Ro'yxatdan o'tish</a>
+  <a onclick="_openCabinet();toggleMobile()">👤 Shaxsiy kabinet</a>
+  <a onclick="openAuth();toggleMobile()">✨ Ro'yxatdan o'tish</a>
 </div>
 
-<!-- ═══════════════════════════════════════
+<!-- ══════════════════════════════════════
      PAGE 1: HOME
-════════════════════════════════════════ -->
+══════════════════════════════════════ -->
 <div class="page active" id="page-home">
-
-  <!-- Hero -->
   <section class="hero">
     <div class="hero-badge">🚀 O'zbekistondagi #1 Drop Servicing Platformasi</div>
     <h1>Biznes yuritish hech qachon<br><span>bu qadar oson bo'lmagan</span></h1>
     <p>Professional xizmatlarni sotib, ijrochilarni topib, daromad ishlang — hamma narsa bir joyda.</p>
     <div class="hero-buttons">
-      <button class="btn-primary" onclick="openRegister()">✨ Bepul boshlash</button>
+      <button class="btn-primary" onclick="openAuth()">✨ Bepul boshlash</button>
       <button class="btn-outline" onclick="goPage('services')">Xizmatlarni ko'rish →</button>
     </div>
     <div class="hero-stats">
-      <div class="hero-stat">
-        <div class="hero-stat-num" id="counter-clients">0</div>
-        <div class="hero-stat-label">Mamnun mijozlar</div>
-      </div>
-      <div class="hero-stat">
-        <div class="hero-stat-num" id="counter-projects">0</div>
-        <div class="hero-stat-label">Bajarilgan loyihalar</div>
-      </div>
-      <div class="hero-stat">
-        <div class="hero-stat-num" id="counter-partners">0</div>
-        <div class="hero-stat-label">Hamkor kompaniyalar</div>
-      </div>
+      <div class="hero-stat"><div class="hero-stat-num" id="counter-clients">0</div><div class="hero-stat-label">Mamnun mijozlar</div></div>
+      <div class="hero-stat"><div class="hero-stat-num" id="counter-projects">0</div><div class="hero-stat-label">Bajarilgan loyihalar</div></div>
+      <div class="hero-stat"><div class="hero-stat-num" id="counter-partners">0</div><div class="hero-stat-label">Hamkor kompaniyalar</div></div>
     </div>
   </section>
 
-  <!-- Features -->
   <section class="section">
     <div class="container">
       <div class="section-header">
@@ -849,222 +519,85 @@
         <p class="section-sub">ServisHub orqali professional xizmatlarni tezda yetkazib, foyda ko'ring.</p>
       </div>
       <div class="grid-3">
-        <div class="card">
-          <div class="card-icon" style="background:#EDE9FF">⚡</div>
-          <h3>Tez va ishonchli</h3>
-          <p>24 soat ichida javob, 72 soat ichida natija. Vaqtingizni tejaymiz.</p>
-        </div>
-        <div class="card">
-          <div class="card-icon" style="background:#D1FAE5">💰</div>
-          <h3>Raqobatbardosh narxlar</h3>
-          <p>Sifatli xizmat uchun adolatli narx. Yashirin to'lovlar yo'q.</p>
-        </div>
-        <div class="card">
-          <div class="card-icon" style="background:#FEF3C7">🤝</div>
-          <h3>Kafolatlangan natija</h3>
-          <p>Natijadan qoniqmasangiz — to'liq qaytarib beramiz. 100% kafolat.</p>
-        </div>
-        <div class="card">
-          <div class="card-icon" style="background:#FEE2E2">🎯</div>
-          <h3>Maqsadli yondashuv</h3>
-          <p>Har bir loyiha uchun individual strategiya ishlab chiqamiz.</p>
-        </div>
-        <div class="card">
-          <div class="card-icon" style="background:#E0F2FE">📊</div>
-          <h3>Real vaqt hisoboti</h3>
-          <p>Loyihangiz qanday borayotganini har doim kuzatib boring.</p>
-        </div>
-        <div class="card">
-          <div class="card-icon" style="background:#F3E8FF">🌍</div>
-          <h3>Global bozorga kirish</h3>
-          <p>O'zbekiston va xalqaro bozorda xizmat ko'rsatamiz.</p>
-        </div>
+        <div class="card"><div class="card-icon" style="background:#EDE9FF">⚡</div><h3>Tez va ishonchli</h3><p>24 soat ichida javob, 72 soat ichida natija.</p></div>
+        <div class="card"><div class="card-icon" style="background:#D1FAE5">💰</div><h3>Raqobatbardosh narxlar</h3><p>Sifatli xizmat uchun adolatli narx. Yashirin to'lovlar yo'q.</p></div>
+        <div class="card"><div class="card-icon" style="background:#FEF3C7">🤝</div><h3>Kafolatlangan natija</h3><p>Natijadan qoniqmasangiz — to'liq qaytarib beramiz.</p></div>
+        <div class="card"><div class="card-icon" style="background:#FEE2E2">🎯</div><h3>Maqsadli yondashuv</h3><p>Har bir loyiha uchun individual strategiya.</p></div>
+        <div class="card"><div class="card-icon" style="background:#E0F2FE">📊</div><h3>Real vaqt hisoboti</h3><p>Loyihangiz qanday borayotganini kuzating.</p></div>
+        <div class="card"><div class="card-icon" style="background:#F3E8FF">🌍</div><h3>Global bozorga kirish</h3><p>O'zbekiston va xalqaro bozorda xizmat ko'rsatamiz.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- How it works -->
   <section class="section section-alt">
     <div class="container">
-      <div class="section-header">
-        <div class="section-tag">Ishlash tartibi</div>
-        <h2 class="section-title">4 qadamda boshlang</h2>
-      </div>
+      <div class="section-header"><div class="section-tag">Ishlash tartibi</div><h2 class="section-title">4 qadamda boshlang</h2></div>
       <div class="steps">
-        <div class="step">
-          <div class="step-num">1</div>
-          <h3>Ro'yxatdan o'ting</h3>
-          <p>Bepul hisob yarating va platformamizdan foydalana boshlang</p>
-        </div>
-        <div class="step">
-          <div class="step-num">2</div>
-          <h3>Xizmat tanlang</h3>
-          <p>O'zingizga kerakli xizmat turini va paketni belgilang</p>
-        </div>
-        <div class="step">
-          <div class="step-num">3</div>
-          <h3>Buyurtma bering</h3>
-          <p>Loyiha tafsilotlarini yuboring, biz ishga tushiramiz</p>
-        </div>
-        <div class="step">
-          <div class="step-num">4</div>
-          <h3>Natijani oling</h3>
-          <p>Professional natijani belgilangan muddatda qabul qiling</p>
-        </div>
+        <div class="step"><div class="step-num">1</div><h3>Ro'yxatdan o'ting</h3><p>Bepul hisob yarating</p></div>
+        <div class="step"><div class="step-num">2</div><h3>Xizmat tanlang</h3><p>Kerakli xizmat turini belgilang</p></div>
+        <div class="step"><div class="step-num">3</div><h3>Buyurtma bering</h3><p>Loyiha tafsilotlarini yuboring</p></div>
+        <div class="step"><div class="step-num">4</div><h3>Natijani oling</h3><p>Belgilangan muddatda qabul qiling</p></div>
       </div>
     </div>
   </section>
 
-  <!-- Testimonials -->
   <section class="section">
     <div class="container">
-      <div class="section-header">
-        <div class="section-tag">Mijozlar fikri</div>
-        <h2 class="section-title">Ular bizga ishonishdi</h2>
-      </div>
+      <div class="section-header"><div class="section-tag">Mijozlar fikri</div><h2 class="section-title">Ular bizga ishonishdi</h2></div>
       <div class="grid-3">
-        <div class="testimonial-card">
-          <div class="stars">★★★★★</div>
-          <p class="testimonial-text">"ServisHub orqali veb-saytimni yaratdim va biznesim uch barobarga o'sdi. Juda tavsiya qilaman!"</p>
-          <div class="testimonial-author">
-            <div class="avatar" style="background:#6C47FF">AK</div>
-            <div>
-              <div class="author-name">Akbar Karimov</div>
-              <div class="author-role">Online do'kon egasi, Toshkent</div>
-            </div>
-          </div>
-        </div>
-        <div class="testimonial-card">
-          <div class="stars">★★★★★</div>
-          <p class="testimonial-text">"Marketing xizmatlari juda a'lo darajada. Ijtimoiy tarmoqlarimdagi obunachilarm 10 barobarga oshdi!"</p>
-          <div class="testimonial-author">
-            <div class="avatar" style="background:#FF6B35">ZM</div>
-            <div>
-              <div class="author-name">Zulfiya Mirzayeva</div>
-              <div class="author-role">Blogger & Tadbirkor</div>
-            </div>
-          </div>
-        </div>
-        <div class="testimonial-card">
-          <div class="stars">★★★★★</div>
-          <p class="testimonial-text">"Narxi qulay, sifat yuqori. Jamoasi juda professonal va muloqotga ochiq. 5 yulduz!"</p>
-          <div class="testimonial-author">
-            <div class="avatar" style="background:#22C55E">BI</div>
-            <div>
-              <div class="author-name">Bobur Ismoilov</div>
-              <div class="author-role">IT Kompaniya direktori</div>
-            </div>
-          </div>
-        </div>
+        <div class="testimonial-card"><div class="stars">★★★★★</div><p class="testimonial-text">"ServisHub orqali veb-saytimni yaratdim va biznesim uch barobarga o'sdi!"</p><div class="testimonial-author"><div class="avatar" style="background:#6C47FF">AK</div><div><div class="author-name">Akbar Karimov</div><div class="author-role">Online do'kon egasi</div></div></div></div>
+        <div class="testimonial-card"><div class="stars">★★★★★</div><p class="testimonial-text">"Marketing xizmatlari juda a'lo! Obunachilarm 10 barobarga oshdi!"</p><div class="testimonial-author"><div class="avatar" style="background:#FF6B35">ZM</div><div><div class="author-name">Zulfiya Mirzayeva</div><div class="author-role">Blogger & Tadbirkor</div></div></div></div>
+        <div class="testimonial-card"><div class="stars">★★★★★</div><p class="testimonial-text">"Narxi qulay, sifat yuqori. Jamoasi juda professional. 5 yulduz!"</p><div class="testimonial-author"><div class="avatar" style="background:#22C55E">BI</div><div><div class="author-name">Bobur Ismoilov</div><div class="author-role">IT Kompaniya direktori</div></div></div></div>
       </div>
     </div>
   </section>
 
-  <!-- CTA Banner -->
+  <section class="section section-alt">
+    <div class="container"><div class="cta-banner">
+      <h2>Bugun biznesingizni rivojlantiring!</h2>
+      <p>Minglab mijozlar ServisHub'ga ishonishdi. Siz ham qo'shiling.</p>
+      <button class="btn-primary" onclick="openAuth()">✨ Bepul ro'yxatdan o'tish</button>
+    </div></div>
+  </section>
+
   <section class="section">
     <div class="container">
-      <div class="cta-banner">
-        <h2>Bugun biznezingizni rivojlantiring!</h2>
-        <p>Minglab mijozlar ServisHub'ga ishonishdi. Siz ham qo'shiling.</p>
-        <button class="btn-primary" onclick="openRegister()">✨ Bepul ro'yxatdan o'tish</button>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section class="section section-alt">
-    <div class="container">
-      <div class="section-header">
-        <div class="section-tag">Savol-javob</div>
-        <h2 class="section-title">Ko'p beriladigan savollar</h2>
-      </div>
+      <div class="section-header"><div class="section-tag">Savol-javob</div><h2 class="section-title">Ko'p beriladigan savollar</h2></div>
       <div style="max-width:720px">
-        <div class="faq-item">
-          <div class="faq-q" onclick="toggleFaq(this)">Drop Servicing nima? <span class="arrow">▼</span></div>
-          <div class="faq-a">Drop Servicing — bu xizmatlarni sotib, ularni professionallar orqali bajarish modeli. Siz mijoz topasiz, biz ijrochi topamiz va sizga daromad qoladi.</div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-q" onclick="toggleFaq(this)">Qancha daromad qilish mumkin? <span class="arrow">▼</span></div>
-          <div class="faq-a">Bu siz sotgan xizmat turiga bog'liq. O'rtacha oylik daromad 500$ dan 5000$ gacha bo'lishi mumkin. Ko'plab muvaffaqiyatli foydalanuvchilarimiz oyiga 10 000$+ daromad qilmoqda.</div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-q" onclick="toggleFaq(this)">Qanday to'lov usullari mavjud? <span class="arrow">▼</span></div>
-          <div class="faq-a">Payme, Click, bank o'tkazmasi va naqd pul orqali to'lov qabul qilinadi. Xalqaro to'lovlar uchun PayPal va Stripe ham mavjud.</div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-q" onclick="toggleFaq(this)">Qo'llab-quvvatlash xizmatidan qanday foydalanaman? <span class="arrow">▼</span></div>
-          <div class="faq-a">24/7 onlayn chat, Telegram bot va telefon orqali bizga murojaat qilishingiz mumkin. Barcha savollaringizga 1 soat ichida javob beramiz.</div>
-        </div>
+        <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Drop Servicing nima? <span class="arrow">▼</span></div><div class="faq-a">Drop Servicing — xizmatlarni sotib, ularni professionallar orqali bajarish modeli. Siz mijoz topasiz, biz ijrochi topamiz.</div></div>
+        <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Qancha daromad qilish mumkin? <span class="arrow">▼</span></div><div class="faq-a">O'rtacha oylik daromad 500$ dan 5000$+ gacha. Ko'plab foydalanuvchilarimiz oyiga 10 000$+ daromad qilmoqda.</div></div>
+        <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Qanday to'lov usullari mavjud? <span class="arrow">▼</span></div><div class="faq-a">Payme, Click, bank o'tkazmasi va naqd pul. Xalqaro to'lovlar uchun PayPal va Stripe ham mavjud.</div></div>
+        <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Qo'llab-quvvatlash xizmatidan qanday foydalanaman? <span class="arrow">▼</span></div><div class="faq-a">24/7 onlayn chat, Telegram bot va telefon orqali murojaat qiling. 1 soat ichida javob beramiz.</div></div>
       </div>
     </div>
   </section>
-
 </div>
 
-<!-- ═══════════════════════════════════════
+<!-- ══════════════════════════════════════
      PAGE 2: SERVICES
-════════════════════════════════════════ -->
+══════════════════════════════════════ -->
 <div class="page" id="page-services">
-
-  <div style="background: linear-gradient(135deg,#1A1A2E,#2D1B69); color:white; padding: 4rem 2rem; text-align:center;">
-    <div class="section-tag" style="background:rgba(255,255,255,0.15); color:white; margin-bottom:1rem">Bizning xizmatlar</div>
-    <h1 style="font-size:clamp(2rem,4vw,3rem); margin-bottom:1rem">Professional Xizmatlar</h1>
-    <p style="color:rgba(255,255,255,0.7); max-width:520px; margin: 0 auto">O'zingiz uchun eng mos xizmat paketini tanlang va bugundan boshlang</p>
+  <div style="background:linear-gradient(135deg,#1A1A2E,#2D1B69);color:white;padding:4rem 2rem;text-align:center">
+    <div class="section-tag" style="background:rgba(255,255,255,0.15);color:white">Bizning xizmatlar</div>
+    <h1 style="font-size:clamp(2rem,4vw,3rem);margin:1rem 0">Professional Xizmatlar</h1>
+    <p style="color:rgba(255,255,255,0.7);max-width:520px;margin:0 auto">O'zingiz uchun eng mos xizmat paketini tanlang</p>
   </div>
 
   <section class="section">
     <div class="container">
-      <div class="section-header">
-        <div class="section-tag">Raqamli marketing</div>
-        <h2 class="section-title">Marketing xizmatlari</h2>
-        <p class="section-sub">Brendingizni kuchaytirib, yangi mijozlar jalb qiling</p>
-      </div>
+      <div class="section-header"><div class="section-tag">Raqamli marketing</div><h2 class="section-title">SMM Xizmatlari</h2></div>
       <div class="grid-3">
         <div class="service-card">
-          <div class="service-card-header">
-            <div style="font-size:2rem; margin-bottom:0.5rem">📱</div>
-            <h3 style="font-size:1.1rem; font-weight:700; margin-bottom:0.25rem">SMM Boshlang'ich</h3>
-            <p style="font-size:0.83rem; color:var(--text-muted)">Ijtimoiy tarmoqlarni boshqarish</p>
-            <div class="service-price">299 000 <span>so'm/oy</span></div>
-          </div>
-          <div class="service-card-body">
-            <div class="service-feature"><span class="check">✓</span> 15 ta post / oy</div>
-            <div class="service-feature"><span class="check">✓</span> Instagram va Telegram</div>
-            <div class="service-feature"><span class="check">✓</span> Kontentni loyihalash</div>
-            <div class="service-feature" style="opacity:0.4"><span>✗</span> Reklama kampaniyasi</div>
-            <button class="btn-service" onclick="openOrder('SMM Boshlang\'ich')">Buyurtma berish</button>
-          </div>
+          <div class="service-card-header"><div style="font-size:2rem;margin-bottom:0.5rem">📱</div><h3 style="font-size:1.1rem;font-weight:700">SMM Boshlang'ich</h3><p style="font-size:0.83rem;color:var(--text-muted)">Ijtimoiy tarmoqlarni boshqarish</p><div class="service-price">299 000 <span>so'm/oy</span></div></div>
+          <div class="service-card-body"><div class="service-feature"><span class="check">✓</span> 15 ta post / oy</div><div class="service-feature"><span class="check">✓</span> Instagram va Telegram</div><div class="service-feature"><span class="check">✓</span> Kontentni loyihalash</div><div class="service-feature" style="opacity:0.4"><span>✗</span> Reklama kampaniyasi</div><button class="btn-service" onclick="openOrder('SMM Boshlang\'ich')">Buyurtma berish</button></div>
         </div>
         <div class="service-card" style="border:2px solid var(--primary)">
-          <div class="service-card-header">
-            <div class="service-badge">🔥 Mashhur</div>
-            <div style="font-size:2rem; margin-bottom:0.5rem">🚀</div>
-            <h3 style="font-size:1.1rem; font-weight:700; margin-bottom:0.25rem">SMM Pro</h3>
-            <p style="font-size:0.83rem; color:var(--text-muted)">To'liq raqamli marketing</p>
-            <div class="service-price">599 000 <span>so'm/oy</span></div>
-          </div>
-          <div class="service-card-body">
-            <div class="service-feature"><span class="check">✓</span> 30 ta post / oy</div>
-            <div class="service-feature"><span class="check">✓</span> Barcha ijtimoiy tarmoqlar</div>
-            <div class="service-feature"><span class="check">✓</span> Reklama kampaniyasi</div>
-            <div class="service-feature"><span class="check">✓</span> Oylik hisobot</div>
-            <button class="btn-service" onclick="openOrder('SMM Pro')">Buyurtma berish</button>
-          </div>
+          <div class="service-card-header"><div class="service-badge">🔥 Mashhur</div><div style="font-size:2rem;margin-bottom:0.5rem">🚀</div><h3 style="font-size:1.1rem;font-weight:700">SMM Pro</h3><p style="font-size:0.83rem;color:var(--text-muted)">To'liq raqamli marketing</p><div class="service-price">599 000 <span>so'm/oy</span></div></div>
+          <div class="service-card-body"><div class="service-feature"><span class="check">✓</span> 30 ta post / oy</div><div class="service-feature"><span class="check">✓</span> Barcha tarmoqlar</div><div class="service-feature"><span class="check">✓</span> Reklama kampaniyasi</div><div class="service-feature"><span class="check">✓</span> Oylik hisobot</div><button class="btn-service" onclick="openOrder('SMM Pro')">Buyurtma berish</button></div>
         </div>
         <div class="service-card">
-          <div class="service-card-header">
-            <div style="font-size:2rem; margin-bottom:0.5rem">👑</div>
-            <h3 style="font-size:1.1rem; font-weight:700; margin-bottom:0.25rem">SMM Premium</h3>
-            <p style="font-size:0.83rem; color:var(--text-muted)">Enterprise darajasida xizmat</p>
-            <div class="service-price">1 200 000 <span>so'm/oy</span></div>
-          </div>
-          <div class="service-card-body">
-            <div class="service-feature"><span class="check">✓</span> Cheksiz kontent</div>
-            <div class="service-feature"><span class="check">✓</span> Dedicated menejer</div>
-            <div class="service-feature"><span class="check">✓</span> Influencer marketing</div>
-            <div class="service-feature"><span class="check">✓</span> Haftalik hisobot</div>
-            <button class="btn-service" onclick="openOrder('SMM Premium')">Buyurtma berish</button>
-          </div>
+          <div class="service-card-header"><div style="font-size:2rem;margin-bottom:0.5rem">👑</div><h3 style="font-size:1.1rem;font-weight:700">SMM Premium</h3><p style="font-size:0.83rem;color:var(--text-muted)">Enterprise darajasida</p><div class="service-price">1 200 000 <span>so'm/oy</span></div></div>
+          <div class="service-card-body"><div class="service-feature"><span class="check">✓</span> Cheksiz kontent</div><div class="service-feature"><span class="check">✓</span> Dedicated menejer</div><div class="service-feature"><span class="check">✓</span> Influencer marketing</div><div class="service-feature"><span class="check">✓</span> Haftalik hisobot</div><button class="btn-service" onclick="openOrder('SMM Premium')">Buyurtma berish</button></div>
         </div>
       </div>
     </div>
@@ -1072,57 +605,19 @@
 
   <section class="section section-alt">
     <div class="container">
-      <div class="section-header">
-        <div class="section-tag">Web dizayn</div>
-        <h2 class="section-title">Veb-sayt yaratish</h2>
-        <p class="section-sub">Zamonaviy va samarali veb-saytlar bilan biznesingizni online'ga chiqaring</p>
-      </div>
+      <div class="section-header"><div class="section-tag">Web dizayn</div><h2 class="section-title">Veb-sayt yaratish</h2></div>
       <div class="grid-3">
         <div class="service-card">
-          <div class="service-card-header">
-            <div style="font-size:2rem; margin-bottom:0.5rem">🌐</div>
-            <h3 style="font-size:1.1rem; font-weight:700; margin-bottom:0.25rem">Landing Page</h3>
-            <p style="font-size:0.83rem; color:var(--text-muted)">Bir sahifalik veb-sayt</p>
-            <div class="service-price">800 000 <span>so'm</span></div>
-          </div>
-          <div class="service-card-body">
-            <div class="service-feature"><span class="check">✓</span> 1 sahifa dizayn</div>
-            <div class="service-feature"><span class="check">✓</span> Mobil moslashuv</div>
-            <div class="service-feature"><span class="check">✓</span> 7 kun ichida tayyor</div>
-            <div class="service-feature" style="opacity:0.4"><span>✗</span> CMS panel</div>
-            <button class="btn-service" onclick="openOrder('Landing Page')">Buyurtma berish</button>
-          </div>
+          <div class="service-card-header"><div style="font-size:2rem;margin-bottom:0.5rem">🌐</div><h3 style="font-size:1.1rem;font-weight:700">Landing Page</h3><p style="font-size:0.83rem;color:var(--text-muted)">Bir sahifalik sayt</p><div class="service-price">800 000 <span>so'm</span></div></div>
+          <div class="service-card-body"><div class="service-feature"><span class="check">✓</span> 1 sahifa dizayn</div><div class="service-feature"><span class="check">✓</span> Mobil moslashuv</div><div class="service-feature"><span class="check">✓</span> 7 kun ichida</div><div class="service-feature" style="opacity:0.4"><span>✗</span> CMS panel</div><button class="btn-service" onclick="openOrder('Landing Page')">Buyurtma berish</button></div>
         </div>
         <div class="service-card" style="border:2px solid var(--primary)">
-          <div class="service-card-header">
-            <div class="service-badge">🔥 Mashhur</div>
-            <div style="font-size:2rem; margin-bottom:0.5rem">💻</div>
-            <h3 style="font-size:1.1rem; font-weight:700; margin-bottom:0.25rem">Korporativ Sayt</h3>
-            <p style="font-size:0.83rem; color:var(--text-muted)">Ko'p sahifalik professional sayt</p>
-            <div class="service-price">2 500 000 <span>so'm</span></div>
-          </div>
-          <div class="service-card-body">
-            <div class="service-feature"><span class="check">✓</span> 5-10 sahifa</div>
-            <div class="service-feature"><span class="check">✓</span> CMS boshqaruv paneli</div>
-            <div class="service-feature"><span class="check">✓</span> SEO optimizatsiya</div>
-            <div class="service-feature"><span class="check">✓</span> 1 yil texnik qo'llab-quvvatlash</div>
-            <button class="btn-service" onclick="openOrder('Korporativ Sayt')">Buyurtma berish</button>
-          </div>
+          <div class="service-card-header"><div class="service-badge">🔥 Mashhur</div><div style="font-size:2rem;margin-bottom:0.5rem">💻</div><h3 style="font-size:1.1rem;font-weight:700">Korporativ Sayt</h3><p style="font-size:0.83rem;color:var(--text-muted)">Ko'p sahifalik sayt</p><div class="service-price">2 500 000 <span>so'm</span></div></div>
+          <div class="service-card-body"><div class="service-feature"><span class="check">✓</span> 5-10 sahifa</div><div class="service-feature"><span class="check">✓</span> CMS boshqaruv paneli</div><div class="service-feature"><span class="check">✓</span> SEO optimizatsiya</div><div class="service-feature"><span class="check">✓</span> 1 yil qo'llab-quvvatlash</div><button class="btn-service" onclick="openOrder('Korporativ Sayt')">Buyurtma berish</button></div>
         </div>
         <div class="service-card">
-          <div class="service-card-header">
-            <div style="font-size:2rem; margin-bottom:0.5rem">🛒</div>
-            <h3 style="font-size:1.1rem; font-weight:700; margin-bottom:0.25rem">Online Do'kon</h3>
-            <p style="font-size:0.83rem; color:var(--text-muted)">E-commerce platforma</p>
-            <div class="service-price">5 000 000 <span>so'm</span></div>
-          </div>
-          <div class="service-card-body">
-            <div class="service-feature"><span class="check">✓</span> To'lov tizimi integratsiyasi</div>
-            <div class="service-feature"><span class="check">✓</span> Mahsulot katalogi</div>
-            <div class="service-feature"><span class="check">✓</span> Buyurtma boshqaruvi</div>
-            <div class="service-feature"><span class="check">✓</span> Admin panel</div>
-            <button class="btn-service" onclick="openOrder('Online Do\'kon')">Buyurtma berish</button>
-          </div>
+          <div class="service-card-header"><div style="font-size:2rem;margin-bottom:0.5rem">🛒</div><h3 style="font-size:1.1rem;font-weight:700">Online Do'kon</h3><p style="font-size:0.83rem;color:var(--text-muted)">E-commerce platforma</p><div class="service-price">5 000 000 <span>so'm</span></div></div>
+          <div class="service-card-body"><div class="service-feature"><span class="check">✓</span> To'lov tizimi</div><div class="service-feature"><span class="check">✓</span> Mahsulot katalogi</div><div class="service-feature"><span class="check">✓</span> Buyurtma boshqaruvi</div><div class="service-feature"><span class="check">✓</span> Admin panel</div><button class="btn-service" onclick="openOrder('Online Do\'kon')">Buyurtma berish</button></div>
         </div>
       </div>
     </div>
@@ -1130,890 +625,438 @@
 
   <section class="section">
     <div class="container">
-      <div class="section-header">
-        <div class="section-tag">Kontent</div>
-        <h2 class="section-title">Kontent yaratish</h2>
-        <p class="section-sub">Sifatli kontent orqali auditoriyangizni kengaytiring</p>
-      </div>
+      <div class="section-header"><div class="section-tag">Kontent</div><h2 class="section-title">Kontent yaratish</h2></div>
       <div class="grid-4">
-        <div class="card" style="cursor:pointer" onclick="openOrder('Copywriting')">
-          <div class="card-icon" style="background:#EDE9FF">✍️</div>
-          <h3>Copywriting</h3>
-          <p>Savdo matni, reklama slogan, mahsulot tavsifi</p>
-          <div style="margin-top:1rem; color:var(--primary); font-weight:600; font-size:0.9rem">150 000 so'm/dan →</div>
-        </div>
-        <div class="card" style="cursor:pointer" onclick="openOrder('Video Montaj')">
-          <div class="card-icon" style="background:#FEF3C7">🎬</div>
-          <h3>Video Montaj</h3>
-          <p>Reklama, Reels, YouTube video, animatsiya</p>
-          <div style="margin-top:1rem; color:var(--primary); font-weight:600; font-size:0.9rem">350 000 so'm/dan →</div>
-        </div>
-        <div class="card" style="cursor:pointer" onclick="openOrder('Grafik Dizayn')">
-          <div class="card-icon" style="background:#D1FAE5">🎨</div>
-          <h3>Grafik Dizayn</h3>
-          <p>Logo, banner, brend identifikatsiyasi</p>
-          <div style="margin-top:1rem; color:var(--primary); font-weight:600; font-size:0.9rem">200 000 so'm/dan →</div>
-        </div>
-        <div class="card" style="cursor:pointer" onclick="openOrder('SEO Optimi-zatsiya')">
-          <div class="card-icon" style="background:#FEE2E2">📈</div>
-          <h3>SEO</h3>
-          <p>Google'da yuqori o'rinlar uchun optimizatsiya</p>
-          <div style="margin-top:1rem; color:var(--primary); font-weight:600; font-size:0.9rem">500 000 so'm/oy →</div>
-        </div>
+        <div class="card" style="cursor:pointer" onclick="openOrder('Copywriting')"><div class="card-icon" style="background:#EDE9FF">✍️</div><h3>Copywriting</h3><p>Savdo matni, reklama slogan</p><div style="margin-top:1rem;color:var(--primary);font-weight:600;font-size:0.9rem">150 000 so'm/dan →</div></div>
+        <div class="card" style="cursor:pointer" onclick="openOrder('Video Montaj')"><div class="card-icon" style="background:#FEF3C7">🎬</div><h3>Video Montaj</h3><p>Reklama, Reels, YouTube</p><div style="margin-top:1rem;color:var(--primary);font-weight:600;font-size:0.9rem">350 000 so'm/dan →</div></div>
+        <div class="card" style="cursor:pointer" onclick="openOrder('Grafik Dizayn')"><div class="card-icon" style="background:#D1FAE5">🎨</div><h3>Grafik Dizayn</h3><p>Logo, banner, brend</p><div style="margin-top:1rem;color:var(--primary);font-weight:600;font-size:0.9rem">200 000 so'm/dan →</div></div>
+        <div class="card" style="cursor:pointer" onclick="openOrder('SEO')"><div class="card-icon" style="background:#FEE2E2">📈</div><h3>SEO</h3><p>Google'da yuqori o'rinlar</p><div style="margin-top:1rem;color:var(--primary);font-weight:600;font-size:0.9rem">500 000 so'm/oy →</div></div>
       </div>
     </div>
   </section>
-
 </div>
 
-<!-- ═══════════════════════════════════════
+<!-- ══════════════════════════════════════
      PAGE 3: ABOUT
-════════════════════════════════════════ -->
+══════════════════════════════════════ -->
 <div class="page" id="page-about">
-
-  <div class="about-hero">
-    <div class="section-tag" style="background:rgba(255,255,255,0.2); color:white; margin-bottom:1rem">Biz haqimizda</div>
-    <h1 style="font-size:clamp(2rem,4vw,3rem); margin-bottom:1rem">Biznesni o'zgartiramiz</h1>
-    <p style="color:rgba(255,255,255,0.75); max-width:520px; margin:0 auto">ServisHub 2022-yilda tashkil etilgan bo'lib, O'zbekistondagi raqamli xizmatlar bozorida lider mavqeini egallab kelmoqda.</p>
+  <div style="background:var(--primary);color:white;padding:5rem 2rem;text-align:center">
+    <div class="section-tag" style="background:rgba(255,255,255,0.2);color:white;margin-bottom:1rem">Biz haqimizda</div>
+    <h1 style="font-size:clamp(2rem,4vw,3rem);margin-bottom:1rem">Biznesni o'zgartiramiz</h1>
+    <p style="color:rgba(255,255,255,0.75);max-width:520px;margin:0 auto">ServisHub 2022-yilda tashkil etilgan bo'lib, O'zbekistondagi raqamli xizmatlar bozorida lider mavqeini egallab kelmoqda.</p>
   </div>
-
-  <!-- Mission & Vision -->
   <section class="section">
     <div class="container">
       <div class="grid-2">
         <div>
           <div class="section-tag">Missiyamiz</div>
           <h2 class="section-title">Nima uchun ServisHub?</h2>
-          <p style="color:var(--text-muted); line-height:1.8; margin-bottom:1.5rem">Biz O'zbekistondagi kichik va o'rta biznes egallariga professional raqamli xizmatlarni qulay, arzon va ishonchli tarzda yetkazib berishni maqsad qilganmiz.</p>
-          <p style="color:var(--text-muted); line-height:1.8;">Drop Servicing modeli orqali tadbirkorlar o'z vaqtlarini asosiy biznesiga sarflaydi, qolgan barcha ishni bizning ekspertlar jamoasi hal qiladi.</p>
+          <p style="color:var(--text-muted);line-height:1.8;margin-bottom:1.5rem">Biz O'zbekistondagi kichik va o'rta biznes egallariga professional raqamli xizmatlarni qulay, arzon va ishonchli tarzda yetkazib berishni maqsad qilganmiz.</p>
+          <p style="color:var(--text-muted);line-height:1.8">Drop Servicing modeli orqali tadbirkorlar asosiy biznesiga vaqt sarflaydi, qolgan barcha ishni bizning ekspertlar jamoasi hal qiladi.</p>
         </div>
-        <div style="display:flex; flex-direction:column; gap:1rem">
-          <div class="value-card">
-            <div class="value-icon" style="background:#EDE9FF">🎯</div>
-            <div>
-              <h4 style="font-size:0.95rem; font-weight:600; margin-bottom:0.3rem">Maqsadlilik</h4>
-              <p style="font-size:0.85rem; color:var(--text-muted)">Har bir qaror mijozning muvaffaqiyatiga yo'naltirilgan</p>
-            </div>
-          </div>
-          <div class="value-card">
-            <div class="value-icon" style="background:#D1FAE5">💎</div>
-            <div>
-              <h4 style="font-size:0.95rem; font-weight:600; margin-bottom:0.3rem">Sifat</h4>
-              <p style="font-size:0.85rem; color:var(--text-muted)">Har doim eng yuqori standartlarda ishlash</p>
-            </div>
-          </div>
-          <div class="value-card">
-            <div class="value-icon" style="background:#FEF3C7">🤝</div>
-            <div>
-              <h4 style="font-size:0.95rem; font-weight:600; margin-bottom:0.3rem">Ishonchlilik</h4>
-              <p style="font-size:0.85rem; color:var(--text-muted)">Va'damizga sodiq qolamiz, muddatni buzmayimiz</p>
-            </div>
-          </div>
+        <div style="display:flex;flex-direction:column;gap:1rem">
+          <div class="value-card"><div class="value-icon" style="background:#EDE9FF">🎯</div><div><h4 style="font-size:0.95rem;font-weight:600;margin-bottom:0.3rem">Maqsadlilik</h4><p style="font-size:0.85rem;color:var(--text-muted)">Har bir qaror mijozning muvaffaqiyatiga yo'naltirilgan</p></div></div>
+          <div class="value-card"><div class="value-icon" style="background:#D1FAE5">💎</div><div><h4 style="font-size:0.95rem;font-weight:600;margin-bottom:0.3rem">Sifat</h4><p style="font-size:0.85rem;color:var(--text-muted)">Har doim eng yuqori standartlarda ishlash</p></div></div>
+          <div class="value-card"><div class="value-icon" style="background:#FEF3C7">🤝</div><div><h4 style="font-size:0.95rem;font-weight:600;margin-bottom:0.3rem">Ishonchlilik</h4><p style="font-size:0.85rem;color:var(--text-muted)">Va'damizga sodiq qolamiz</p></div></div>
         </div>
       </div>
     </div>
   </section>
-
-  <!-- Numbers -->
   <section class="section section-alt">
     <div class="container">
-      <div class="section-header" style="text-align:center">
-        <div class="section-tag">Raqamlarda</div>
-        <h2 class="section-title">Natijalarimiz</h2>
-      </div>
+      <div class="section-header" style="text-align:center"><div class="section-tag">Raqamlarda</div><h2 class="section-title">Natijalarimiz</h2></div>
       <div class="grid-4">
-        <div style="text-align:center; padding:2rem; background:white; border:1px solid var(--border); border-radius:16px">
-          <div style="font-size:2.5rem; font-weight:800; color:var(--primary)">2+</div>
-          <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.5rem">Yil tajriba</div>
-        </div>
-        <div style="text-align:center; padding:2rem; background:white; border:1px solid var(--border); border-radius:16px">
-          <div style="font-size:2.5rem; font-weight:800; color:var(--primary)">500+</div>
-          <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.5rem">Mamnun mijozlar</div>
-        </div>
-        <div style="text-align:center; padding:2rem; background:white; border:1px solid var(--border); border-radius:16px">
-          <div style="font-size:2.5rem; font-weight:800; color:var(--primary)">1200+</div>
-          <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.5rem">Bajarilgan loyihalar</div>
-        </div>
-        <div style="text-align:center; padding:2rem; background:white; border:1px solid var(--border); border-radius:16px">
-          <div style="font-size:2.5rem; font-weight:800; color:var(--primary)">98%</div>
-          <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.5rem">Mijoz mamnuniyati</div>
-        </div>
+        <div style="text-align:center;padding:2rem;background:white;border:1px solid var(--border);border-radius:16px"><div style="font-size:2.5rem;font-weight:800;color:var(--primary)">2+</div><div style="font-size:0.85rem;color:var(--text-muted);margin-top:0.5rem">Yil tajriba</div></div>
+        <div style="text-align:center;padding:2rem;background:white;border:1px solid var(--border);border-radius:16px"><div style="font-size:2.5rem;font-weight:800;color:var(--primary)">500+</div><div style="font-size:0.85rem;color:var(--text-muted);margin-top:0.5rem">Mamnun mijozlar</div></div>
+        <div style="text-align:center;padding:2rem;background:white;border:1px solid var(--border);border-radius:16px"><div style="font-size:2.5rem;font-weight:800;color:var(--primary)">1200+</div><div style="font-size:0.85rem;color:var(--text-muted);margin-top:0.5rem">Bajarilgan loyihalar</div></div>
+        <div style="text-align:center;padding:2rem;background:white;border:1px solid var(--border);border-radius:16px"><div style="font-size:2.5rem;font-weight:800;color:var(--primary)">98%</div><div style="font-size:0.85rem;color:var(--text-muted);margin-top:0.5rem">Mijoz mamnuniyati</div></div>
       </div>
     </div>
   </section>
-
-  <!-- Team -->
   <section class="section">
     <div class="container">
-      <div class="section-header">
-        <div class="section-tag">Jamoamiz</div>
-        <h2 class="section-title">Mutaxassislarimiz</h2>
-      </div>
+      <div class="section-header"><div class="section-tag">Jamoamiz</div><h2 class="section-title">Mutaxassislarimiz</h2></div>
       <div class="grid-4">
-        <div class="team-card">
-          <div class="team-avatar" style="background:var(--primary)">AJ</div>
-          <div class="team-name">Asilbek Jurayev</div>
-          <div class="team-role">CEO & Asoschisi</div>
-          <div class="team-bio">5 yil raqamli marketing va biznes rivojlantirish tajribasi</div>
-        </div>
-        <div class="team-card">
-          <div class="team-avatar" style="background:var(--accent)">MN</div>
-          <div class="team-name">Malika Nazarova</div>
-          <div class="team-role">Marketing Direktori</div>
-          <div class="team-bio">Google va Meta sertifikatlangan marketing mutaxassisi</div>
-        </div>
-        <div class="team-card">
-          <div class="team-avatar" style="background:#22C55E">SK</div>
-          <div class="team-name">Sardor Kalandarov</div>
-          <div class="team-role">Bosh Dizayner</div>
-          <div class="team-bio">100+ ta muvaffaqiyatli brend identifikatsiyasi loyihalari</div>
-        </div>
-        <div class="team-card">
-          <div class="team-avatar" style="background:#F59E0B">DY</div>
-          <div class="team-name">Dilnoza Yusupova</div>
-          <div class="team-role">Mijozlar Bo'limi</div>
-          <div class="team-bio">Mijoz mamnuniyatini ta'minlash bo'yicha ekspert</div>
-        </div>
+        <div class="team-card"><div class="team-avatar" style="background:var(--primary)">AJ</div><div style="font-weight:600;margin-bottom:0.25rem">Asilbek Jurayev</div><div style="font-size:0.83rem;color:var(--text-muted);margin-bottom:0.75rem">CEO & Asoschisi</div><div style="font-size:0.83rem;color:var(--text-muted)">5 yil raqamli marketing tajribasi</div></div>
+        <div class="team-card"><div class="team-avatar" style="background:var(--accent)">MN</div><div style="font-weight:600;margin-bottom:0.25rem">Malika Nazarova</div><div style="font-size:0.83rem;color:var(--text-muted);margin-bottom:0.75rem">Marketing Direktori</div><div style="font-size:0.83rem;color:var(--text-muted)">Google va Meta sertifikatlangan</div></div>
+        <div class="team-card"><div class="team-avatar" style="background:#22C55E">SK</div><div style="font-weight:600;margin-bottom:0.25rem">Sardor Kalandarov</div><div style="font-size:0.83rem;color:var(--text-muted);margin-bottom:0.75rem">Bosh Dizayner</div><div style="font-size:0.83rem;color:var(--text-muted)">100+ muvaffaqiyatli loyiha</div></div>
+        <div class="team-card"><div class="team-avatar" style="background:#F59E0B">DY</div><div style="font-weight:600;margin-bottom:0.25rem">Dilnoza Yusupova</div><div style="font-size:0.83rem;color:var(--text-muted);margin-bottom:0.75rem">Mijozlar Bo'limi</div><div style="font-size:0.83rem;color:var(--text-muted)">Mijoz mamnuniyati bo'yicha ekspert</div></div>
       </div>
     </div>
   </section>
-
 </div>
 
-<!-- ═══════════════════════════════════════
+<!-- ══════════════════════════════════════
      PAGE 4: CONTACT
-════════════════════════════════════════ -->
+══════════════════════════════════════ -->
 <div class="page" id="page-contact">
-
-  <div class="contact-hero">
-    <div class="section-tag" style="background:rgba(255,255,255,0.15); color:white; margin-bottom:1rem">Aloqa</div>
-    <h1 style="font-size:clamp(2rem,4vw,3rem); margin-bottom:1rem">Biz bilan bog'laning</h1>
-    <p style="color:rgba(255,255,255,0.7); max-width:480px; margin:0 auto">Savollaringiz bormi? 24 soat ichida javob beramiz</p>
+  <div style="background:linear-gradient(135deg,#1A1A2E,#2D1B69);color:white;padding:4rem 2rem;text-align:center">
+    <div class="section-tag" style="background:rgba(255,255,255,0.15);color:white;margin-bottom:1rem">Aloqa</div>
+    <h1 style="font-size:clamp(2rem,4vw,3rem);margin-bottom:1rem">Biz bilan bog'laning</h1>
+    <p style="color:rgba(255,255,255,0.7);max-width:480px;margin:0 auto">24 soat ichida javob beramiz</p>
   </div>
-
   <section class="section">
     <div class="container">
-      <div class="grid-2" style="align-items:start; gap:3rem">
-        <!-- Contact Form -->
+      <div class="grid-2" style="align-items:start;gap:3rem">
         <div class="form-container">
-          <h3 style="font-size:1.25rem; font-weight:700; margin-bottom:0.5rem">Xabar yuborish</h3>
-          <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:1.75rem">Barcha maydonlarni to'ldiring va biz siz bilan bog'lanamiz</p>
-
+          <h3 style="font-size:1.25rem;font-weight:700;margin-bottom:0.5rem">Xabar yuborish</h3>
+          <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:1.75rem">Barcha maydonlarni to'ldiring</p>
           <div class="form-row">
-            <div class="form-group">
-              <label class="form-label">Ism</label>
-              <input type="text" class="form-input" id="c-name" placeholder="Ismingiz">
-            </div>
-            <div class="form-group">
-              <label class="form-label">Familiya</label>
-              <input type="text" class="form-input" id="c-surname" placeholder="Familiyangiz">
-            </div>
+            <div class="form-group"><label class="form-label">Ism</label><input type="text" class="form-input" id="c-name" placeholder="Ismingiz"></div>
+            <div class="form-group"><label class="form-label">Familiya</label><input type="text" class="form-input" id="c-surname" placeholder="Familiyangiz"></div>
           </div>
-
-          <div class="form-group">
-            <label class="form-label">Telefon raqam</label>
-            <input type="tel" class="form-input" id="c-phone" placeholder="+998 90 000 00 00">
-          </div>
-
-          <div class="form-group">
-            <label class="form-label">Email manzil</label>
-            <input type="email" class="form-input" id="c-email" placeholder="email@example.com">
-          </div>
-
-          <div class="form-group">
-            <label class="form-label">Xizmat turi</label>
+          <div class="form-group"><label class="form-label">Telefon</label><input type="tel" class="form-input" id="c-phone" placeholder="+998 90 000 00 00"></div>
+          <div class="form-group"><label class="form-label">Email</label><input type="email" class="form-input" id="c-email" placeholder="email@example.com"></div>
+          <div class="form-group"><label class="form-label">Xizmat turi</label>
             <select class="form-select" id="c-service">
               <option value="">Xizmat tanlang...</option>
-              <option>SMM Boshlang'ich</option>
-              <option>SMM Pro</option>
-              <option>SMM Premium</option>
-              <option>Landing Page</option>
-              <option>Korporativ Sayt</option>
-              <option>Online Do'kon</option>
-              <option>Copywriting</option>
-              <option>Video Montaj</option>
-              <option>Grafik Dizayn</option>
-              <option>SEO</option>
-              <option>Boshqa</option>
+              <option>SMM Boshlang'ich</option><option>SMM Pro</option><option>SMM Premium</option>
+              <option>Landing Page</option><option>Korporativ Sayt</option><option>Online Do'kon</option>
+              <option>Copywriting</option><option>Video Montaj</option><option>Grafik Dizayn</option><option>SEO</option><option>Boshqa</option>
             </select>
           </div>
-
-          <div class="form-group">
-            <label class="form-label">Xabar</label>
-            <textarea class="form-textarea" id="c-message" placeholder="Loyihangiz haqida qisqacha ma'lumot bering..."></textarea>
-          </div>
-
-          <button class="form-submit" onclick="submitContact()">📨 Xabar yuborish</button>
+          <div class="form-group"><label class="form-label">Xabar</label><textarea class="form-textarea" id="c-message" placeholder="Loyihangiz haqida..."></textarea></div>
+          <button class="form-submit" id="contact-btn" onclick="_fbContact()">📨 Xabar yuborish</button>
         </div>
-
-        <!-- Contact Info -->
         <div>
-          <h3 style="font-size:1.25rem; font-weight:700; margin-bottom:2rem">Biz bilan aloqa</h3>
-
-          <div style="display:flex; flex-direction:column; gap:1.25rem">
-            <div style="display:flex; gap:1rem; align-items:center; padding:1.25rem; background:white; border:1px solid var(--border); border-radius:14px">
-              <div style="width:44px;height:44px;background:var(--primary-light);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0">📞</div>
-              <div>
-                <div style="font-size:0.8rem;color:var(--text-muted);margin-bottom:2px">Telefon</div>
-                <div style="font-weight:600">+998 90 123 45 67</div>
-              </div>
-            </div>
-
-            <div style="display:flex; gap:1rem; align-items:center; padding:1.25rem; background:white; border:1px solid var(--border); border-radius:14px">
-              <div style="width:44px;height:44px;background:var(--primary-light);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0">📧</div>
-              <div>
-                <div style="font-size:0.8rem;color:var(--text-muted);margin-bottom:2px">Email</div>
-                <div style="font-weight:600">info@servishub.uz</div>
-              </div>
-            </div>
-
-            <div style="display:flex; gap:1rem; align-items:center; padding:1.25rem; background:white; border:1px solid var(--border); border-radius:14px">
-              <div style="width:44px;height:44px;background:var(--primary-light);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0">📍</div>
-              <div>
-                <div style="font-size:0.8rem;color:var(--text-muted);margin-bottom:2px">Manzil</div>
-                <div style="font-weight:600">Toshkent sh., Yunusobod tumani, 12-uy</div>
-              </div>
-            </div>
-
-            <div style="display:flex; gap:1rem; align-items:center; padding:1.25rem; background:white; border:1px solid var(--border); border-radius:14px">
-              <div style="width:44px;height:44px;background:var(--primary-light);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0">⏰</div>
-              <div>
-                <div style="font-size:0.8rem;color:var(--text-muted);margin-bottom:2px">Ish vaqti</div>
-                <div style="font-weight:600">Du-Shan: 9:00 — 18:00</div>
-              </div>
-            </div>
-
-            <div style="display:flex; gap:1rem; align-items:center; padding:1.25rem; background:white; border:1px solid var(--border); border-radius:14px">
-              <div style="width:44px;height:44px;background:#EEF2FF;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0">✈️</div>
-              <div>
-                <div style="font-size:0.8rem;color:var(--text-muted);margin-bottom:2px">Telegram</div>
-                <div style="font-weight:600">@ServisHub_uz</div>
-              </div>
-            </div>
-          </div>
-
-          <div style="margin-top:2rem; padding:1.5rem; background:var(--primary); border-radius:16px; color:white; text-align:center">
-            <div style="font-size:1.5rem; margin-bottom:0.5rem">💬</div>
-            <h4 style="font-size:1rem; font-weight:600; margin-bottom:0.4rem">Tezkor maslahat</h4>
-            <p style="font-size:0.83rem; opacity:0.85; margin-bottom:1rem">Telegram orqali 15 daqiqa ichida javob oling</p>
-            <a href="https://t.me/ServisHub_uz" style="display:inline-block; background:white; color:var(--primary); padding:0.6rem 1.5rem; border-radius:10px; font-weight:600; font-size:0.9rem; text-decoration:none">Telegram'da yozing</a>
+          <h3 style="font-size:1.25rem;font-weight:700;margin-bottom:2rem">Biz bilan aloqa</h3>
+          <div style="display:flex;flex-direction:column;gap:1.25rem">
+            <div style="display:flex;gap:1rem;align-items:center;padding:1.25rem;background:white;border:1px solid var(--border);border-radius:14px"><div style="width:44px;height:44px;background:var(--primary-light);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0">📞</div><div><div style="font-size:0.8rem;color:var(--text-muted);margin-bottom:2px">Telefon</div><div style="font-weight:600">+998 90 123 45 67</div></div></div>
+            <div style="display:flex;gap:1rem;align-items:center;padding:1.25rem;background:white;border:1px solid var(--border);border-radius:14px"><div style="width:44px;height:44px;background:var(--primary-light);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0">📧</div><div><div style="font-size:0.8rem;color:var(--text-muted);margin-bottom:2px">Email</div><div style="font-weight:600">info@servishub.uz</div></div></div>
+            <div style="display:flex;gap:1rem;align-items:center;padding:1.25rem;background:white;border:1px solid var(--border);border-radius:14px"><div style="width:44px;height:44px;background:var(--primary-light);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0">📍</div><div><div style="font-size:0.8rem;color:var(--text-muted);margin-bottom:2px">Manzil</div><div style="font-weight:600">Toshkent sh., Yunusobod tumani</div></div></div>
+            <div style="padding:1.5rem;background:var(--primary);border-radius:16px;color:white;text-align:center"><div style="font-size:1.5rem;margin-bottom:0.5rem">✈️</div><h4 style="font-size:1rem;font-weight:600;margin-bottom:0.4rem">Tezkor maslahat</h4><p style="font-size:0.83rem;opacity:0.85;margin-bottom:1rem">Telegram orqali 15 daqiqa ichida javob</p><a href="https://t.me/ServisHub_uz" style="display:inline-block;background:white;color:var(--primary);padding:0.6rem 1.5rem;border-radius:10px;font-weight:600;font-size:0.9rem;text-decoration:none">Telegram'da yozing</a></div>
           </div>
         </div>
       </div>
     </div>
   </section>
-
 </div>
 
-<!-- ═══════════════════════════════════════
-     PAGE 5: CRM
-════════════════════════════════════════ -->
-<div class="page" id="page-crm">
+<!-- ══════════════════════════════════════
+     PAGE 5: PERSONAL CABINET
+══════════════════════════════════════ -->
+<div class="page" id="page-cabinet">
+  <div class="cabinet-header">
+    <div class="container" style="display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap">
+      <div class="cabinet-avatar" id="cab-avatar-char">U</div>
+      <div>
+        <h2 style="font-size:1.5rem;font-weight:700;margin-bottom:0.25rem" id="cab-name">Yuklanmoqda...</h2>
+        <p style="color:rgba(255,255,255,0.7);font-size:0.9rem" id="cab-email-val"></p>
+      </div>
+      <button onclick="_fbLogout()" style="margin-left:auto;background:rgba(255,255,255,0.1);color:white;border:1px solid rgba(255,255,255,0.2);padding:0.6rem 1.25rem;border-radius:10px;font-size:0.88rem;cursor:pointer;font-family:'Inter',sans-serif;font-weight:500">🚪 Chiqish</button>
+    </div>
+  </div>
 
-  <!-- CRM LOGIN SCREEN -->
-  <div id="crm-login-screen" style="min-height:100vh; display:flex; align-items:center; justify-content:center; background:linear-gradient(135deg,#0F0F1A,#2D1B69); padding:2rem;">
-    <div style="background:white; border-radius:24px; padding:2.5rem; width:100%; max-width:400px; text-align:center;">
+  <div class="cabinet-grid">
+    <!-- Sidebar -->
+    <div class="cabinet-sidebar">
+      <div class="cabinet-menu-item active" onclick="cabSection('orders',this)">📦 Mening buyurtmalarim</div>
+      <div class="cabinet-menu-item" onclick="cabSection('profile',this)">👤 Profil ma'lumotlari</div>
+      <div class="cabinet-menu-item" onclick="goPage('services')">⚡ Yangi xizmat buyurtma qilish</div>
+      <div class="cabinet-menu-item" onclick="goPage('contact')">📞 Qo'llab-quvvatlash</div>
+      <div class="cabinet-menu-item" style="color:var(--danger)" onclick="_fbLogout()">🚪 Chiqish</div>
+    </div>
+
+    <!-- Content -->
+    <div class="cabinet-content">
+      <!-- Orders -->
+      <div class="cabinet-section active" id="cab-sec-orders">
+        <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:1.5rem">📦 Mening buyurtmalarim</h3>
+        <div id="cab-orders"><p style="color:var(--text-muted)">⏳ Yuklanmoqda...</p></div>
+      </div>
+
+      <!-- Profile -->
+      <div class="cabinet-section" id="cab-sec-profile">
+        <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:1.5rem">👤 Profil ma'lumotlari</h3>
+        <div class="info-row"><span class="info-label">To'liq ism</span><span class="info-value" id="cab-name2"></span></div>
+        <div class="info-row"><span class="info-label">Email</span><span class="info-value" id="cab-email2"></span></div>
+        <div class="info-row"><span class="info-label">Telefon</span><span class="info-value" id="cab-phone-val">—</span></div>
+        <div class="info-row"><span class="info-label">Qiziqish sohasi</span><span class="info-value" id="cab-service-val">—</span></div>
+        <div class="info-row"><span class="info-label">Ro'yxatdan o'tgan sana</span><span class="info-value" id="cab-joined-val">—</span></div>
+        <div style="margin-top:1.5rem;padding:1rem;background:var(--primary-light);border-radius:12px;font-size:0.85rem;color:var(--primary)">
+          💡 Ma'lumotlarni o'zgartirish uchun biz bilan bog'laning: <strong>info@servishub.uz</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     PAGE 6: CRM (Admin only)
+══════════════════════════════════════ -->
+<div class="page" id="page-crm">
+  <!-- Login screen -->
+  <div id="crm-login-screen" style="min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#0F0F1A,#2D1B69);padding:2rem;">
+    <div style="background:white;border-radius:24px;padding:2.5rem;width:100%;max-width:400px;text-align:center;">
       <div style="width:64px;height:64px;background:var(--primary);border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin:0 auto 1.5rem;">🔐</div>
       <h2 style="font-size:1.4rem;font-weight:700;margin-bottom:0.5rem;">Admin Panel</h2>
       <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:2rem;">CRM tizimiga kirish uchun parol kiriting</p>
-      <div style="margin-bottom:1rem;text-align:left;">
-        <label style="display:block;font-size:0.83rem;font-weight:500;margin-bottom:0.4rem;">Login</label>
-        <input type="text" id="crm-login-user" class="form-input" placeholder="admin" autocomplete="username">
-      </div>
-      <div style="margin-bottom:1.5rem;text-align:left;">
-        <label style="display:block;font-size:0.83rem;font-weight:500;margin-bottom:0.4rem;">Parol</label>
-        <input type="password" id="crm-login-pass" class="form-input" placeholder="••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter')crmLogin()">
-      </div>
+      <div style="margin-bottom:1rem;text-align:left;"><label style="display:block;font-size:0.83rem;font-weight:500;margin-bottom:0.4rem;">Login</label><input type="text" id="crm-login-user" class="form-input" placeholder="admin" autocomplete="username"></div>
+      <div style="margin-bottom:1.5rem;text-align:left;"><label style="display:block;font-size:0.83rem;font-weight:500;margin-bottom:0.4rem;">Parol</label><input type="password" id="crm-login-pass" class="form-input" placeholder="••••••••" onkeydown="if(event.key==='Enter')crmLogin()"></div>
       <button onclick="crmLogin()" style="width:100%;background:var(--primary);color:white;border:none;padding:0.9rem;border-radius:12px;font-size:1rem;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;">🔓 Kirish</button>
       <p id="crm-login-error" style="display:none;color:var(--danger);font-size:0.83rem;margin-top:1rem;">Login yoki parol noto'g'ri!</p>
-      <p style="font-size:0.75rem;color:var(--text-muted);margin-top:1.5rem;">Bu sahifa faqat sayt administratori uchun</p>
     </div>
   </div>
 
-  <!-- CRM CONTENT (hidden until login) -->
+  <!-- CRM content -->
   <div id="crm-content" style="display:none;">
-
-  <div class="crm-header">
-    <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
-      <div class="crm-title">📊 CRM Boshqaruv Paneli</div>
-      <button onclick="crmLogout()" style="background:rgba(255,255,255,0.1);color:white;border:1px solid rgba(255,255,255,0.2);padding:0.4rem 1rem;border-radius:8px;font-size:0.8rem;cursor:pointer;font-family:'Inter',sans-serif;">🚪 Chiqish</button>
-    </div>
-    <div class="crm-title">📊 CRM Boshqaruv Paneli</div>
-    <div class="crm-stats">
-      <div class="crm-stat">
-        <div class="crm-stat-num" id="total-clients">0</div>
-        <div class="crm-stat-label">Jami mijozlar</div>
+    <div class="crm-header">
+      <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
+        <div class="crm-title">📊 CRM Boshqaruv Paneli</div>
+        <button onclick="crmLogout()" style="background:rgba(255,255,255,0.1);color:white;border:1px solid rgba(255,255,255,0.2);padding:0.4rem 1rem;border-radius:8px;font-size:0.8rem;cursor:pointer;font-family:'Inter',sans-serif;">🚪 Chiqish</button>
       </div>
-      <div class="crm-stat">
-        <div class="crm-stat-num" id="new-clients">0</div>
-        <div class="crm-stat-label">Yangi</div>
-      </div>
-      <div class="crm-stat">
-        <div class="crm-stat-num" id="process-clients">0</div>
-        <div class="crm-stat-label">Jarayonda</div>
-      </div>
-      <div class="crm-stat">
-        <div class="crm-stat-num" id="done-clients">0</div>
-        <div class="crm-stat-label">Bajarilgan</div>
+      <div class="crm-stats">
+        <div class="crm-stat"><div class="crm-stat-num" id="total-clients">0</div><div class="crm-stat-label">Jami mijozlar</div></div>
+        <div class="crm-stat"><div class="crm-stat-num" id="new-clients">0</div><div class="crm-stat-label">Yangi</div></div>
+        <div class="crm-stat"><div class="crm-stat-num" id="process-clients">0</div><div class="crm-stat-label">Jarayonda</div></div>
+        <div class="crm-stat"><div class="crm-stat-num" id="done-clients">0</div><div class="crm-stat-label">Bajarilgan</div></div>
       </div>
     </div>
-  </div>
-
-  <div class="crm-controls">
-    <input class="crm-search" type="text" placeholder="🔍 Ism, telefon yoki xizmat bo'yicha qidiring..." oninput="renderTable()">
-    <select class="crm-filter" onchange="renderTable()" id="status-filter">
-      <option value="">Barcha statuslar</option>
-      <option value="new">Yangi</option>
-      <option value="process">Jarayonda</option>
-      <option value="done">Bajarilgan</option>
-      <option value="cancel">Bekor qilingan</option>
-    </select>
-    <button onclick="openAddModal()" style="background:var(--primary);color:white;border:none;padding:0.6rem 1.25rem;border-radius:10px;font-size:0.88rem;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;white-space:nowrap">+ Yangi mijoz</button>
-    <button onclick="exportCSV()" style="background:white;color:var(--text);border:1px solid var(--border);padding:0.6rem 1.25rem;border-radius:10px;font-size:0.88rem;cursor:pointer;font-family:'Inter',sans-serif;white-space:nowrap">⬇ Export</button>
-  </div>
-
-  <div class="crm-table-wrap" style="background:white">
-    <table id="crm-table">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Ism Familiya</th>
-          <th>Telefon</th>
-          <th>Email</th>
-          <th>Xizmat</th>
-          <th>Status</th>
-          <th>Sana</th>
-          <th>Amallar</th>
-        </tr>
-      </thead>
-      <tbody id="crm-tbody"></tbody>
-    </table>
-    <div id="crm-empty" style="display:none; text-align:center; padding:4rem 2rem; color:var(--text-muted)">
-      <div style="font-size:3rem; margin-bottom:1rem">📋</div>
-      <p style="font-size:1rem; font-weight:500">Mijozlar hali yo'q</p>
-      <p style="font-size:0.85rem; margin-top:0.5rem">Yangi mijoz qo'shish uchun yuqoridagi tugmani bosing</p>
+    <div class="crm-controls">
+      <input class="crm-search" type="text" placeholder="🔍 Qidirish..." oninput="renderTable()">
+      <select class="crm-filter" onchange="renderTable()" id="status-filter">
+        <option value="">Barcha statuslar</option>
+        <option value="new">Yangi</option><option value="process">Jarayonda</option><option value="done">Bajarilgan</option><option value="cancel">Bekor</option>
+      </select>
+      <button onclick="_loadCRMClients()" style="background:white;color:var(--text);border:1px solid var(--border);padding:0.6rem 1.25rem;border-radius:10px;font-size:0.88rem;cursor:pointer;font-family:'Inter',sans-serif;">🔄 Yangilash</button>
+      <button onclick="exportCSV()" style="background:white;color:var(--text);border:1px solid var(--border);padding:0.6rem 1.25rem;border-radius:10px;font-size:0.88rem;cursor:pointer;font-family:'Inter',sans-serif;">⬇ Export</button>
+    </div>
+    <div style="overflow-x:auto;background:white;">
+      <table>
+        <thead><tr><th>#</th><th>Ism Familiya</th><th>Telefon</th><th>Email</th><th>Xizmat</th><th>Status</th><th>Sana</th><th>Amallar</th></tr></thead>
+        <tbody id="crm-tbody"></tbody>
+      </table>
+      <div id="crm-empty" style="display:none;text-align:center;padding:4rem;color:var(--text-muted)"><div style="font-size:3rem;margin-bottom:1rem">📋</div><p style="font-weight:500">Mijozlar hali yo'q</p></div>
     </div>
   </div>
-
-  </div><!-- /crm-content -->
 </div>
 
-<!-- ─── FOOTER ─── -->
+<!-- FOOTER -->
 <footer>
   <div class="footer-grid">
-    <div>
-      <div class="footer-brand-name">ServisHub</div>
-      <p class="footer-desc">O'zbekistondagi drop servicing platformasi. Professional xizmatlar, ishonchli natijalar.</p>
-    </div>
-    <div class="footer-col">
-      <h4>Xizmatlar</h4>
-      <ul class="footer-links">
-        <li><a onclick="goPage('services')">SMM</a></li>
-        <li><a onclick="goPage('services')">Veb-sayt</a></li>
-        <li><a onclick="goPage('services')">Kontent</a></li>
-        <li><a onclick="goPage('services')">SEO</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Kompaniya</h4>
-      <ul class="footer-links">
-        <li><a onclick="goPage('about')">Biz haqimizda</a></li>
-        <li><a onclick="goPage('about')">Jamoa</a></li>
-        <li><a onclick="goPage('contact')">Aloqa</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Ijtimoiy tarmoqlar</h4>
-      <ul class="footer-links">
-        <li><a>📘 Facebook</a></li>
-        <li><a>📸 Instagram</a></li>
-        <li><a>✈️ Telegram</a></li>
-        <li><a>▶ YouTube</a></li>
-      </ul>
-    </div>
+    <div><div class="footer-brand-name">ServisHub</div><p class="footer-desc">O'zbekistondagi drop servicing platformasi. Professional xizmatlar, ishonchli natijalar.</p></div>
+    <div class="footer-col"><h4>Xizmatlar</h4><ul class="footer-links"><li><a onclick="goPage('services')">SMM</a></li><li><a onclick="goPage('services')">Veb-sayt</a></li><li><a onclick="goPage('services')">Kontent</a></li><li><a onclick="goPage('services')">SEO</a></li></ul></div>
+    <div class="footer-col"><h4>Kompaniya</h4><ul class="footer-links"><li><a onclick="goPage('about')">Biz haqimizda</a></li><li><a onclick="goPage('about')">Jamoa</a></li><li><a onclick="goPage('contact')">Aloqa</a></li></ul></div>
+    <div class="footer-col"><h4>Ijtimoiy tarmoqlar</h4><ul class="footer-links"><li><a>📘 Facebook</a></li><li><a>📸 Instagram</a></li><li><a>✈️ Telegram</a></li><li><a>▶ YouTube</a></li></ul></div>
   </div>
-  <div class="footer-bottom">
-    © 2024 ServisHub. Barcha huquqlar himoyalangan.
-  </div>
+  <div class="footer-bottom">© 2024 ServisHub. Barcha huquqlar himoyalangan.</div>
 </footer>
 
-<!-- ─── REGISTER MODAL ─── -->
-<div class="modal-overlay" id="registerModal">
+<!-- AUTH MODAL (Register + Login tabs) -->
+<div class="modal-overlay" id="authModal">
   <div class="modal">
     <div class="modal-header">
-      <div class="modal-title">✨ Ro'yxatdan o'tish</div>
-      <button class="modal-close" onclick="closeModal('registerModal')">✕</button>
+      <div class="modal-title">👤 Hisobga kirish</div>
+      <button class="modal-close" onclick="closeModal('authModal')">✕</button>
     </div>
-    <div class="form-row">
-      <div class="form-group">
-        <label class="form-label">Ism *</label>
-        <input type="text" class="form-input" id="r-name" placeholder="Ismingiz">
+    <div class="modal-tabs">
+      <div class="modal-tab active" id="tab-reg" onclick="switchTab('reg')">Ro'yxatdan o'tish</div>
+      <div class="modal-tab" id="tab-login" onclick="switchTab('login')">Kirish</div>
+    </div>
+
+    <!-- Register tab -->
+    <div class="tab-content active" id="tabcontent-reg">
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">Ism *</label><input type="text" class="form-input" id="r-name" placeholder="Ismingiz"></div>
+        <div class="form-group"><label class="form-label">Familiya *</label><input type="text" class="form-input" id="r-surname" placeholder="Familiyangiz"></div>
       </div>
-      <div class="form-group">
-        <label class="form-label">Familiya *</label>
-        <input type="text" class="form-input" id="r-surname" placeholder="Familiyangiz">
+      <div class="form-group"><label class="form-label">Telefon *</label><input type="tel" class="form-input" id="r-phone" placeholder="+998 90 000 00 00"></div>
+      <div class="form-group"><label class="form-label">Email *</label><input type="email" class="form-input" id="r-email" placeholder="email@example.com"></div>
+      <div class="form-group"><label class="form-label">Parol * (kamida 6 belgi)</label><input type="password" class="form-input" id="r-pass" placeholder="••••••••"></div>
+      <div class="form-group"><label class="form-label">Qiziqish sohasiz</label>
+        <select class="form-select" id="r-service">
+          <option value="">Tanlang...</option>
+          <option>SMM & Marketing</option><option>Veb-sayt yaratish</option><option>Kontent yaratish</option><option>SEO</option><option>Hammasi</option>
+        </select>
       </div>
+      <button class="form-submit" id="register-btn" onclick="_fbRegister()">🚀 Ro'yxatdan o'tish</button>
     </div>
-    <div class="form-group">
-      <label class="form-label">Telefon *</label>
-      <input type="tel" class="form-input" id="r-phone" placeholder="+998 90 000 00 00">
+
+    <!-- Login tab -->
+    <div class="tab-content" id="tabcontent-login">
+      <div class="form-group"><label class="form-label">Email</label><input type="email" class="form-input" id="l-email" placeholder="email@example.com"></div>
+      <div class="form-group"><label class="form-label">Parol</label><input type="password" class="form-input" id="l-pass" placeholder="••••••••" onkeydown="if(event.key==='Enter')_fbLogin()"></div>
+      <button class="form-submit" id="login-btn" onclick="_fbLogin()">🔓 Kirish</button>
+      <p style="text-align:center;font-size:0.82rem;color:var(--text-muted);margin-top:1rem">Hisobingiz yo'qmi? <a style="color:var(--primary);cursor:pointer;font-weight:500" onclick="switchTab('reg')">Ro'yxatdan o'ting</a></p>
     </div>
-    <div class="form-group">
-      <label class="form-label">Email *</label>
-      <input type="email" class="form-input" id="r-email" placeholder="email@example.com">
-    </div>
-    <div class="form-group">
-      <label class="form-label">Parol *</label>
-      <input type="password" class="form-input" id="r-pass" placeholder="Kamida 8 ta belgi">
-    </div>
-    <div class="form-group">
-      <label class="form-label">Qiziqish sohangiiz</label>
-      <select class="form-select" id="r-service">
-        <option value="">Tanlang...</option>
-        <option>SMM & Marketing</option>
-        <option>Veb-sayt yaratish</option>
-        <option>Kontent yaratish</option>
-        <option>SEO</option>
-        <option>Hammasi</option>
-      </select>
-    </div>
-    <button class="form-submit" onclick="submitRegister()">🚀 Ro'yxatdan o'tish</button>
-    <p style="text-align:center; font-size:0.82rem; color:var(--text-muted); margin-top:1rem">
-      Allaqachon hisobingiz bormi? <a style="color:var(--primary); cursor:pointer; font-weight:500" onclick="switchToLogin()">Kirish</a>
-    </p>
   </div>
 </div>
 
-<!-- ─── ORDER MODAL ─── -->
+<!-- ORDER MODAL -->
 <div class="modal-overlay" id="orderModal">
   <div class="modal">
-    <div class="modal-header">
-      <div class="modal-title">🛒 Buyurtma berish</div>
-      <button class="modal-close" onclick="closeModal('orderModal')">✕</button>
-    </div>
-    <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:1.5rem">Tanlangan xizmat: <strong id="order-service-name" style="color:var(--primary)"></strong></p>
+    <div class="modal-header"><div class="modal-title">🛒 Buyurtma berish</div><button class="modal-close" onclick="closeModal('orderModal')">✕</button></div>
+    <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:1.5rem">Tanlangan xizmat: <strong id="order-service-name" style="color:var(--primary)"></strong></p>
     <div class="form-row">
-      <div class="form-group">
-        <label class="form-label">Ism *</label>
-        <input type="text" class="form-input" id="o-name" placeholder="Ismingiz">
-      </div>
-      <div class="form-group">
-        <label class="form-label">Familiya</label>
-        <input type="text" class="form-input" id="o-surname" placeholder="Familiyangiz">
-      </div>
+      <div class="form-group"><label class="form-label">Ism *</label><input type="text" class="form-input" id="o-name" placeholder="Ismingiz"></div>
+      <div class="form-group"><label class="form-label">Familiya</label><input type="text" class="form-input" id="o-surname" placeholder="Familiyangiz"></div>
     </div>
-    <div class="form-group">
-      <label class="form-label">Telefon *</label>
-      <input type="tel" class="form-input" id="o-phone" placeholder="+998 90 000 00 00">
-    </div>
-    <div class="form-group">
-      <label class="form-label">Email</label>
-      <input type="email" class="form-input" id="o-email" placeholder="email@example.com">
-    </div>
-    <div class="form-group">
-      <label class="form-label">Loyiha haqida</label>
-      <textarea class="form-textarea" id="o-note" placeholder="Qo'shimcha ma'lumot..." style="min-height:80px"></textarea>
-    </div>
-    <button class="form-submit" onclick="submitOrder()">📨 Buyurtma yuborish</button>
+    <div class="form-group"><label class="form-label">Telefon *</label><input type="tel" class="form-input" id="o-phone" placeholder="+998 90 000 00 00"></div>
+    <div class="form-group"><label class="form-label">Email</label><input type="email" class="form-input" id="o-email" placeholder="email@example.com"></div>
+    <div class="form-group"><label class="form-label">Loyiha haqida</label><textarea class="form-textarea" id="o-note" placeholder="Qo'shimcha ma'lumot..." style="min-height:80px"></textarea></div>
+    <button class="form-submit" id="order-btn" onclick="_fbOrder()">📨 Buyurtma yuborish</button>
   </div>
 </div>
 
-<!-- ─── ADD CLIENT MODAL ─── -->
-<div class="modal-overlay" id="addClientModal">
-  <div class="modal">
-    <div class="modal-header">
-      <div class="modal-title">➕ Yangi mijoz qo'shish</div>
-      <button class="modal-close" onclick="closeModal('addClientModal')">✕</button>
-    </div>
-    <div class="form-row">
-      <div class="form-group">
-        <label class="form-label">Ism *</label>
-        <input type="text" class="form-input" id="a-name" placeholder="Ism">
-      </div>
-      <div class="form-group">
-        <label class="form-label">Familiya</label>
-        <input type="text" class="form-input" id="a-surname" placeholder="Familiya">
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="form-label">Telefon *</label>
-      <input type="tel" class="form-input" id="a-phone" placeholder="+998 90 000 00 00">
-    </div>
-    <div class="form-group">
-      <label class="form-label">Email</label>
-      <input type="email" class="form-input" id="a-email" placeholder="email@example.com">
-    </div>
-    <div class="form-group">
-      <label class="form-label">Xizmat</label>
-      <select class="form-select" id="a-service">
-        <option>SMM Boshlang'ich</option>
-        <option>SMM Pro</option>
-        <option>SMM Premium</option>
-        <option>Landing Page</option>
-        <option>Korporativ Sayt</option>
-        <option>Online Do'kon</option>
-        <option>Copywriting</option>
-        <option>Video Montaj</option>
-        <option>Grafik Dizayn</option>
-        <option>SEO</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label class="form-label">Status</label>
-      <select class="form-select" id="a-status">
-        <option value="new">Yangi</option>
-        <option value="process">Jarayonda</option>
-        <option value="done">Bajarilgan</option>
-        <option value="cancel">Bekor qilingan</option>
-      </select>
-    </div>
-    <button class="form-submit" onclick="addClient()">✅ Saqlash</button>
-  </div>
-</div>
-
-<!-- ─── TOAST ─── -->
-<div class="toast" id="toast">✓ Muvaffaqiyatli!</div>
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
 
 <script>
-// ─── DATA STORE ───
-let clients = JSON.parse(localStorage.getItem('sh_clients') || '[]');
-
-function saveClients() {
-  localStorage.setItem('sh_clients', JSON.stringify(clients));
-}
-
-// ─── CRM AUTH ───
-const CRM_USER = 'admin';
-const CRM_PASS = 'servishub2024'; // ← Parolni shu yerda o'zgartiring
-
-function crmLogin() {
-  const u = document.getElementById('crm-login-user').value;
-  const p = document.getElementById('crm-login-pass').value;
-  if (u === CRM_USER && p === CRM_PASS) {
-    sessionStorage.setItem('crm_auth', '1');
-    document.getElementById('crm-login-screen').style.display = 'none';
-    document.getElementById('crm-content').style.display = 'block';
-    renderTable();
-  } else {
-    document.getElementById('crm-login-error').style.display = 'block';
-    document.getElementById('crm-login-pass').value = '';
-  }
-}
-
-function crmLogout() {
-  sessionStorage.removeItem('crm_auth');
-  document.getElementById('crm-content').style.display = 'none';
-  document.getElementById('crm-login-screen').style.display = 'flex';
-  document.getElementById('crm-login-user').value = '';
-  document.getElementById('crm-login-pass').value = '';
-  document.getElementById('crm-login-error').style.display = 'none';
-}
-
-function checkCrmAuth() {
-  if (sessionStorage.getItem('crm_auth') === '1') {
-    document.getElementById('crm-login-screen').style.display = 'none';
-    document.getElementById('crm-content').style.display = 'block';
-  } else {
-    document.getElementById('crm-login-screen').style.display = 'flex';
-    document.getElementById('crm-content').style.display = 'none';
-  }
-}
-
 // ─── NAVIGATION ───
 function goPage(name) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.nav-links a, .mobile-nav a').forEach(a => a.classList.remove('active'));
-  document.getElementById('page-' + name).classList.add('active');
-  const navEl = document.getElementById('nav-' + name);
-  if (navEl) navEl.classList.add('active');
-  window.scrollTo(0, 0);
-  if (name === 'crm') { checkCrmAuth(); renderTable(); }
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  document.getElementById('page-'+name).classList.add('active');
+  const el = document.getElementById('nav-'+name);
+  if (el) el.classList.add('active');
+  window.scrollTo(0,0);
+  if (name==='crm') checkCrmAuth();
 }
 
 function toggleMobile() {
   document.getElementById('mobileNav').classList.toggle('open');
 }
 
-// ─── COUNTERS ───
-function animateCounter(el, end, suffix) {
-  let start = 0;
-  const duration = 1800;
-  const step = (timestamp) => {
-    if (!start) start = timestamp;
-    const progress = Math.min((timestamp - start) / duration, 1);
-    const eased = 1 - Math.pow(1 - progress, 3);
-    el.textContent = Math.floor(eased * end) + suffix;
-    if (progress < 1) requestAnimationFrame(step);
-  };
-  requestAnimationFrame(step);
-}
-
-setTimeout(() => {
-  animateCounter(document.getElementById('counter-clients'), 500, '+');
-  animateCounter(document.getElementById('counter-projects'), 1200, '+');
-  animateCounter(document.getElementById('counter-partners'), 48, '+');
-}, 400);
-
-// ─── FAQ ───
-function toggleFaq(el) {
-  el.classList.toggle('open');
-  const ans = el.nextElementSibling;
-  ans.classList.toggle('open');
-}
-
 // ─── MODALS ───
-function openRegister() {
-  document.getElementById('registerModal').classList.add('open');
+function openAuth() { document.getElementById('authModal').classList.add('open'); }
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+function openOrder(s) { document.getElementById('order-service-name').textContent=s; document.getElementById('orderModal').classList.add('open'); }
+window.openAuth = openAuth;
+window.closeModal = closeModal;
+
+function switchTab(tab) {
+  document.querySelectorAll('.modal-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
+  document.getElementById('tab-'+tab).classList.add('active');
+  document.getElementById('tabcontent-'+tab).classList.add('active');
 }
 
-function closeModal(id) {
-  document.getElementById(id).classList.remove('open');
-}
-
-function openOrder(serviceName) {
-  document.getElementById('order-service-name').textContent = serviceName;
-  document.getElementById('orderModal').classList.add('open');
-}
-
-function openAddModal() {
-  document.getElementById('addClientModal').classList.add('open');
-}
-
-// ─── TOAST ───
-function showToast(msg, type='success') {
-  const t = document.getElementById('toast');
-  t.textContent = (type === 'success' ? '✅ ' : '❌ ') + msg;
-  t.className = 'toast ' + type;
-  t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 3500);
-}
-
-// ─── SUBMIT REGISTER ───
-function submitRegister() {
-  const name = document.getElementById('r-name').value.trim();
-  const phone = document.getElementById('r-phone').value.trim();
-  const email = document.getElementById('r-email').value.trim();
-  const service = document.getElementById('r-service').value;
-
-  if (!name || !phone || !email) {
-    showToast("Iltimos, barcha maydonlarni to'ldiring!", 'error');
-    return;
+// ─── CABINET SECTIONS ───
+function cabSection(name, el) {
+  document.querySelectorAll('.cabinet-section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.cabinet-menu-item').forEach(m=>m.classList.remove('active'));
+  document.getElementById('cab-sec-'+name).classList.add('active');
+  el.classList.add('active');
+  // sync profile fields
+  if (name==='profile') {
+    document.getElementById('cab-name2').textContent = document.getElementById('cab-name').textContent;
+    document.getElementById('cab-email2').textContent = document.getElementById('cab-email-val').textContent;
   }
-
-  const client = {
-    id: Date.now(),
-    name: name + ' ' + document.getElementById('r-surname').value.trim(),
-    phone,
-    email,
-    service: service || 'Belgilanmagan',
-    status: 'new',
-    date: new Date().toLocaleDateString('uz-UZ')
-  };
-
-  clients.push(client);
-  saveClients();
-  closeModal('registerModal');
-  showToast("Ro'yxatdan muvaffaqiyatli o'tdingiz!");
-
-  // clear fields
-  ['r-name','r-surname','r-phone','r-email','r-pass'].forEach(id => document.getElementById(id).value = '');
-  document.getElementById('r-service').value = '';
 }
 
-function switchToLogin() {
-  closeModal('registerModal');
-  showToast('Kirish funksiyasi tez orada qo\'shiladi', 'success');
-}
-
-// ─── SUBMIT ORDER ───
-function submitOrder() {
-  const name = document.getElementById('o-name').value.trim();
-  const phone = document.getElementById('o-phone').value.trim();
-  const service = document.getElementById('order-service-name').textContent;
-
-  if (!name || !phone) {
-    showToast("Ism va telefon raqamni kiriting!", 'error');
-    return;
+// ─── CRM AUTH ───
+const CRM_USER='admin', CRM_PASS='servishub2024';
+function crmLogin() {
+  const u=document.getElementById('crm-login-user').value;
+  const p=document.getElementById('crm-login-pass').value;
+  if (u===CRM_USER && p===CRM_PASS) {
+    sessionStorage.setItem('crm_auth','1');
+    document.getElementById('crm-login-screen').style.display='none';
+    document.getElementById('crm-content').style.display='block';
+    if (window._loadCRMClients) window._loadCRMClients();
+  } else {
+    document.getElementById('crm-login-error').style.display='block';
+    document.getElementById('crm-login-pass').value='';
   }
-
-  const client = {
-    id: Date.now(),
-    name: name + ' ' + document.getElementById('o-surname').value.trim(),
-    phone,
-    email: document.getElementById('o-email').value.trim() || '—',
-    service,
-    status: 'new',
-    date: new Date().toLocaleDateString('uz-UZ')
-  };
-
-  clients.push(client);
-  saveClients();
-  closeModal('orderModal');
-  showToast('Buyurtmangiz qabul qilindi! Tez orada bog\'lanamiz.');
-
-  ['o-name','o-surname','o-phone','o-email','o-note'].forEach(id => document.getElementById(id).value = '');
 }
-
-// ─── SUBMIT CONTACT ───
-function submitContact() {
-  const name = document.getElementById('c-name').value.trim();
-  const phone = document.getElementById('c-phone').value.trim();
-
-  if (!name || !phone) {
-    showToast("Ism va telefon raqamni kiriting!", 'error');
-    return;
-  }
-
-  const client = {
-    id: Date.now(),
-    name: name + ' ' + document.getElementById('c-surname').value.trim(),
-    phone,
-    email: document.getElementById('c-email').value.trim() || '—',
-    service: document.getElementById('c-service').value || 'Aloqa formasi',
-    status: 'new',
-    date: new Date().toLocaleDateString('uz-UZ')
-  };
-
-  clients.push(client);
-  saveClients();
-  showToast("Xabaringiz yuborildi! Tez orada javob beramiz.");
-
-  ['c-name','c-surname','c-phone','c-email','c-message'].forEach(id => document.getElementById(id).value = '');
-  document.getElementById('c-service').value = '';
+function crmLogout() {
+  sessionStorage.removeItem('crm_auth');
+  document.getElementById('crm-content').style.display='none';
+  document.getElementById('crm-login-screen').style.display='flex';
+  document.getElementById('crm-login-user').value='';
+  document.getElementById('crm-login-pass').value='';
+  document.getElementById('crm-login-error').style.display='none';
 }
-
-// ─── ADD CLIENT ───
-function addClient() {
-  const name = document.getElementById('a-name').value.trim();
-  const phone = document.getElementById('a-phone').value.trim();
-
-  if (!name || !phone) {
-    showToast("Ism va telefon raqamni kiriting!", 'error');
-    return;
+function checkCrmAuth() {
+  if (sessionStorage.getItem('crm_auth')==='1') {
+    document.getElementById('crm-login-screen').style.display='none';
+    document.getElementById('crm-content').style.display='block';
+    if (window._loadCRMClients) window._loadCRMClients();
+  } else {
+    document.getElementById('crm-login-screen').style.display='flex';
+    document.getElementById('crm-content').style.display='none';
   }
-
-  const client = {
-    id: Date.now(),
-    name: name + ' ' + document.getElementById('a-surname').value.trim(),
-    phone,
-    email: document.getElementById('a-email').value.trim() || '—',
-    service: document.getElementById('a-service').value,
-    status: document.getElementById('a-status').value,
-    date: new Date().toLocaleDateString('uz-UZ')
-  };
-
-  clients.push(client);
-  saveClients();
-  closeModal('addClientModal');
-  showToast("Mijoz muvaffaqiyatli qo'shildi!");
-  renderTable();
-
-  ['a-name','a-surname','a-phone','a-email'].forEach(id => document.getElementById(id).value = '');
 }
 
 // ─── CRM TABLE ───
-const statusMap = {
-  new: { label: 'Yangi', cls: 'status-new' },
-  process: { label: 'Jarayonda', cls: 'status-process' },
-  done: { label: 'Bajarilgan', cls: 'status-done' },
-  cancel: { label: 'Bekor qilindi', cls: 'status-cancel' }
-};
+window._crmClients = [];
+const statusLabels = {new:'Yangi',process:'Jarayonda',done:'Bajarilgan',cancel:'Bekor'};
 
-function renderTable() {
-  const search = (document.querySelector('.crm-search')?.value || '').toLowerCase();
-  const statusFilter = document.getElementById('status-filter')?.value || '';
-
-  let filtered = clients.filter(c => {
-    const matchSearch = !search ||
-      c.name.toLowerCase().includes(search) ||
-      c.phone.includes(search) ||
-      (c.service && c.service.toLowerCase().includes(search));
-    const matchStatus = !statusFilter || c.status === statusFilter;
-    return matchSearch && matchStatus;
+window.renderTable = function() {
+  const search = (document.querySelector('.crm-search')?.value||'').toLowerCase();
+  const sf = document.getElementById('status-filter')?.value||'';
+  const filtered = window._crmClients.filter(c => {
+    const ms = !search || (c.name||'').toLowerCase().includes(search) || (c.phone||'').includes(search) || (c.service||'').toLowerCase().includes(search);
+    const mf = !sf || c.status===sf;
+    return ms && mf;
   });
-
   const tbody = document.getElementById('crm-tbody');
   const empty = document.getElementById('crm-empty');
-
-  if (filtered.length === 0) {
-    tbody.innerHTML = '';
-    empty.style.display = 'block';
-  } else {
-    empty.style.display = 'none';
-    tbody.innerHTML = filtered.map((c, i) => {
-      const s = statusMap[c.status] || statusMap.new;
-      return `<tr>
-        <td style="color:var(--text-muted);font-size:0.8rem">${i + 1}</td>
-        <td><strong>${c.name}</strong></td>
-        <td>${c.phone}</td>
-        <td style="font-size:0.83rem;color:var(--text-muted)">${c.email}</td>
-        <td style="font-size:0.83rem">${c.service}</td>
-        <td>
-          <select onchange="changeStatus(${c.id}, this.value)" style="border:none;background:transparent;font-size:0.83rem;cursor:pointer;font-family:'Inter',sans-serif">
-            <option value="new" ${c.status==='new'?'selected':''}>🆕 Yangi</option>
-            <option value="process" ${c.status==='process'?'selected':''}>⚡ Jarayonda</option>
-            <option value="done" ${c.status==='done'?'selected':''}>✅ Bajarilgan</option>
-            <option value="cancel" ${c.status==='cancel'?'selected':''}>❌ Bekor</option>
-          </select>
-        </td>
-        <td style="font-size:0.8rem;color:var(--text-muted)">${c.date}</td>
-        <td>
-          <button class="action-btn del" onclick="deleteClient(${c.id})">🗑</button>
-        </td>
-      </tr>`;
-    }).join('');
+  if (filtered.length===0) { tbody.innerHTML=''; empty.style.display='block'; }
+  else {
+    empty.style.display='none';
+    tbody.innerHTML = filtered.map((c,i) => `<tr>
+      <td style="color:var(--text-muted);font-size:0.8rem">${i+1}</td>
+      <td><strong>${c.name||'—'}</strong></td>
+      <td>${c.phone||'—'}</td>
+      <td style="font-size:0.83rem;color:var(--text-muted)">${c.email||'—'}</td>
+      <td style="font-size:0.83rem">${c.service||'—'}</td>
+      <td><select onchange="_crmChangeStatus('${c.firestoreId}',this.value)" style="border:none;background:transparent;font-size:0.83rem;cursor:pointer;font-family:'Inter',sans-serif">
+        <option value="new" ${c.status==='new'?'selected':''}>🆕 Yangi</option>
+        <option value="process" ${c.status==='process'?'selected':''}>⚡ Jarayonda</option>
+        <option value="done" ${c.status==='done'?'selected':''}>✅ Bajarilgan</option>
+        <option value="cancel" ${c.status==='cancel'?'selected':''}>❌ Bekor</option>
+      </select></td>
+      <td style="font-size:0.8rem;color:var(--text-muted)">${c.date||'—'}</td>
+      <td><button class="action-btn del" onclick="_crmDelete('${c.firestoreId}')">🗑</button></td>
+    </tr>`).join('');
   }
-
-  // Update stats
-  document.getElementById('total-clients').textContent = clients.length;
-  document.getElementById('new-clients').textContent = clients.filter(c => c.status === 'new').length;
-  document.getElementById('process-clients').textContent = clients.filter(c => c.status === 'process').length;
-  document.getElementById('done-clients').textContent = clients.filter(c => c.status === 'done').length;
-}
-
-function changeStatus(id, newStatus) {
-  const c = clients.find(c => c.id === id);
-  if (c) { c.status = newStatus; saveClients(); renderTable(); }
-}
-
-function deleteClient(id) {
-  if (confirm("Bu mijozni o'chirmoqchimisiz?")) {
-    clients = clients.filter(c => c.id !== id);
-    saveClients();
-    renderTable();
-    showToast("Mijoz o'chirildi");
-  }
-}
+  document.getElementById('total-clients').textContent = window._crmClients.length;
+  document.getElementById('new-clients').textContent = window._crmClients.filter(c=>c.status==='new').length;
+  document.getElementById('process-clients').textContent = window._crmClients.filter(c=>c.status==='process').length;
+  document.getElementById('done-clients').textContent = window._crmClients.filter(c=>c.status==='done').length;
+};
 
 function exportCSV() {
-  if (clients.length === 0) { showToast("Ma'lumot yo'q!", 'error'); return; }
-  const rows = [['#','Ism','Telefon','Email','Xizmat','Status','Sana']];
-  clients.forEach((c, i) => {
-    rows.push([i+1, c.name, c.phone, c.email, c.service, statusMap[c.status]?.label || c.status, c.date]);
-  });
-  const csv = rows.map(r => r.join(',')).join('\n');
-  const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' });
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = 'ServisHub_CRM_' + new Date().toLocaleDateString('uz-UZ') + '.csv';
-  a.click();
-  showToast('CSV fayl yuklab olindi!');
+  if (!window._crmClients.length) { showToast("Ma'lumot yo'q!", 'error'); return; }
+  const rows=[['#','Ism','Telefon','Email','Xizmat','Status','Sana']];
+  window._crmClients.forEach((c,i)=>rows.push([i+1,c.name,c.phone,c.email,c.service,statusLabels[c.status]||c.status,c.date]));
+  const csv=rows.map(r=>r.join(',')).join('\n');
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8;'}));
+  a.download='ServisHub_CRM.csv'; a.click();
+  showToast('CSV yuklab olindi!');
 }
 
-// Close modals on overlay click
-document.querySelectorAll('.modal-overlay').forEach(overlay => {
-  overlay.addEventListener('click', e => {
-    if (e.target === overlay) overlay.classList.remove('open');
-  });
-});
+// ─── TOAST ───
+window.showToast = function(msg, type='success') {
+  const t=document.getElementById('toast');
+  t.textContent=(type==='success'?'✅ ':'❌ ')+msg;
+  t.className='toast '+type;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),3500);
+};
 
-// Init
-renderTable();
+// ─── FAQ ───
+function toggleFaq(el) { el.classList.toggle('open'); el.nextElementSibling.classList.toggle('open'); }
 
-// Secret admin access via URL hash: yoursite.com#admin
-if (window.location.hash === '#admin') {
-  goPage('crm');
+// ─── COUNTERS ───
+function animateCounter(el, end, suffix) {
+  let start=0;
+  const step=(ts)=>{ if(!start)start=ts; const p=Math.min((ts-start)/1800,1); el.textContent=Math.floor((1-Math.pow(1-p,3))*end)+suffix; if(p<1)requestAnimationFrame(step); };
+  requestAnimationFrame(step);
 }
+setTimeout(()=>{
+  animateCounter(document.getElementById('counter-clients'),500,'+');
+  animateCounter(document.getElementById('counter-projects'),1200,'+');
+  animateCounter(document.getElementById('counter-partners'),48,'+');
+},400);
+
+// ─── CLOSE MODAL ON OVERLAY ───
+document.querySelectorAll('.modal-overlay').forEach(o=>o.addEventListener('click',e=>{if(e.target===o)o.classList.remove('open');}));
+
+// ─── HASH ROUTING ───
+if (window.location.hash==='#admin') goPage('crm');
 </script>
 </body>
 </html>
